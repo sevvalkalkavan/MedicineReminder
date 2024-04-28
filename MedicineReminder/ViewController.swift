@@ -9,9 +9,23 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var AppNameLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        AppNameLabel.text = ""
+        var charIndex = 0.0
+        let titleText = "Take2Heal"
+        AppNameLabel.font = UIFont(name: "PatuaOne-Regular", size: 40)
+        for letter in titleText {
+            Timer.scheduledTimer(withTimeInterval: 0.1 * charIndex, repeats: false){ (timer) in
+                self.AppNameLabel.text?.append(letter)
+            }
+            charIndex += 1
+        }
+
+        
+
     }
     
     

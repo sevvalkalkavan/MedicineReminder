@@ -18,6 +18,11 @@
 		020A68E02BDCDBD4007D92CA /* MedicineReminderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020A68DF2BDCDBD4007D92CA /* MedicineReminderUITestsLaunchTests.swift */; };
 		020A68ED2BDCE775007D92CA /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020A68EC2BDCE775007D92CA /* LogInViewController.swift */; };
 		020A68EF2BDCE791007D92CA /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020A68EE2BDCE791007D92CA /* SignUpViewController.swift */; };
+		021D5CB82BDED192001A9974 /* PatuaOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 021D5CB72BDED192001A9974 /* PatuaOne-Regular.ttf */; };
+		023D26072BDEA00E000F0C1B /* SaveMedicineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D26062BDEA00E000F0C1B /* SaveMedicineViewController.swift */; };
+		023D26092BDEA059000F0C1B /* DetailMedicineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D26082BDEA059000F0C1B /* DetailMedicineViewController.swift */; };
+		023D260B2BDEA9B2000F0C1B /* Medicine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D260A2BDEA9B2000F0C1B /* Medicine.swift */; };
+		023D260D2BDEB19C000F0C1B /* MedicineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D260C2BDEB19C000F0C1B /* MedicineTableViewCell.swift */; };
 		02455D352BDD4F7A00C9689C /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02455D342BDD4F7A00C9689C /* CalendarViewController.swift */; };
 		02455D372BDD4F9900C9689C /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02455D362BDD4F9900C9689C /* PersonalViewController.swift */; };
 		02455D392BDD4FB900C9689C /* MedicineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02455D382BDD4FB900C9689C /* MedicineViewController.swift */; };
@@ -62,6 +67,11 @@
 		020A68DF2BDCDBD4007D92CA /* MedicineReminderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineReminderUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		020A68EC2BDCE775007D92CA /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		020A68EE2BDCE791007D92CA /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		021D5CB72BDED192001A9974 /* PatuaOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PatuaOne-Regular.ttf"; sourceTree = "<group>"; };
+		023D26062BDEA00E000F0C1B /* SaveMedicineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveMedicineViewController.swift; sourceTree = "<group>"; };
+		023D26082BDEA059000F0C1B /* DetailMedicineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMedicineViewController.swift; sourceTree = "<group>"; };
+		023D260A2BDEA9B2000F0C1B /* Medicine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medicine.swift; sourceTree = "<group>"; };
+		023D260C2BDEB19C000F0C1B /* MedicineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineTableViewCell.swift; sourceTree = "<group>"; };
 		02455D342BDD4F7A00C9689C /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		02455D362BDD4F9900C9689C /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		02455D382BDD4FB900C9689C /* MedicineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineViewController.swift; sourceTree = "<group>"; };
@@ -124,8 +134,12 @@
 				020A68BC2BDCDBD3007D92CA /* AppDelegate.swift */,
 				020A68BE2BDCDBD3007D92CA /* SceneDelegate.swift */,
 				020A68C02BDCDBD3007D92CA /* ViewController.swift */,
+				023D26062BDEA00E000F0C1B /* SaveMedicineViewController.swift */,
 				020A68C22BDCDBD3007D92CA /* Main.storyboard */,
+				023D26082BDEA059000F0C1B /* DetailMedicineViewController.swift */,
+				023D260A2BDEA9B2000F0C1B /* Medicine.swift */,
 				02455D382BDD4FB900C9689C /* MedicineViewController.swift */,
+				023D260C2BDEB19C000F0C1B /* MedicineTableViewCell.swift */,
 				020A68EC2BDCE775007D92CA /* LogInViewController.swift */,
 				020A68EE2BDCE791007D92CA /* SignUpViewController.swift */,
 				02455D362BDD4F9900C9689C /* PersonalViewController.swift */,
@@ -134,6 +148,7 @@
 				02455D342BDD4F7A00C9689C /* CalendarViewController.swift */,
 				020A68CA2BDCDBD4007D92CA /* Info.plist */,
 				028428FD2BDD28A800F0C645 /* GoogleService-Info.plist */,
+				021D5CB72BDED192001A9974 /* PatuaOne-Regular.ttf */,
 			);
 			path = MedicineReminder;
 			sourceTree = "<group>";
@@ -269,6 +284,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				021D5CB82BDED192001A9974 /* PatuaOne-Regular.ttf in Resources */,
 				020A68C62BDCDBD4007D92CA /* Assets.xcassets in Resources */,
 				028428FE2BDD28A800F0C645 /* GoogleService-Info.plist in Resources */,
 				020A68C92BDCDBD4007D92CA /* Base in Resources */,
@@ -301,10 +317,14 @@
 				020A68ED2BDCE775007D92CA /* LogInViewController.swift in Sources */,
 				020A68C12BDCDBD3007D92CA /* ViewController.swift in Sources */,
 				020A68BD2BDCDBD3007D92CA /* AppDelegate.swift in Sources */,
+				023D260B2BDEA9B2000F0C1B /* Medicine.swift in Sources */,
 				02455D392BDD4FB900C9689C /* MedicineViewController.swift in Sources */,
 				020A68BF2BDCDBD3007D92CA /* SceneDelegate.swift in Sources */,
+				023D260D2BDEB19C000F0C1B /* MedicineTableViewCell.swift in Sources */,
 				020A68EF2BDCE791007D92CA /* SignUpViewController.swift in Sources */,
 				02455D372BDD4F9900C9689C /* PersonalViewController.swift in Sources */,
+				023D26072BDEA00E000F0C1B /* SaveMedicineViewController.swift in Sources */,
+				023D26092BDEA059000F0C1B /* DetailMedicineViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

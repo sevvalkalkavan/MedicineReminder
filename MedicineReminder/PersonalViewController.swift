@@ -12,15 +12,20 @@ class PersonalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.title = "AppName"
-        let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = UIColor(named: "color")
-        
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.compactAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+//        self.navigationItem.title = "AppName"
+//        let appearance = UINavigationBarAppearance()
+//        appearance.backgroundColor = UIColor(named: "color")
+//        appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+//        navigationController?.navigationBar.barStyle = .black
+//        
+//        navigationController?.navigationBar.standardAppearance = appearance
+//        navigationController?.navigationBar.compactAppearance = appearance
+//        navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.navigationItem.hidesBackButton = true
+    }
 
 }

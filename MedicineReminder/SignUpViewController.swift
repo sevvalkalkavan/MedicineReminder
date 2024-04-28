@@ -18,6 +18,7 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.navigationBar.tintColor = UIColor.gray
         // Do any additional setup after loading the view.
     }
     
