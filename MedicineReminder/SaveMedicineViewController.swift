@@ -7,6 +7,8 @@
 
 import UIKit
 import FirebaseStorage
+import Firebase
+import FirebaseFirestore
 
 class SaveMedicineViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -62,8 +64,29 @@ class SaveMedicineViewController: UIViewController,UIImagePickerControllerDelega
                 }else{
                     imageReference.downloadURL { url, error in
                         if error == nil{
+                            
                             let imageURL = url?.absoluteString
+                            
                             print(imageURL)
+                            
+                            if let imageURL = imageURL{
+                                let firestoreDatabase = Firestore.firestore()
+                                let firestoreMedicine = ["imageurl" : imageURL, "description" : self.descriptionTF.text!, "medicineName": self.medicineNameTF.text! , "username": Auth.auth().currentUser!.email , "dosage": self.dosageTF.text!, "meal": self.mealTF.text!, "dueDate": self.dueDateTF.text!] as [String : Any]
+                                firestoreDatabase.collection("Medicine").addDocument(data: firestoreMedicine) { (error) in
+                                    if error != nil {
+                                        self.errorAlert(titleInput: "Error", messageInput: error!.localizedDescription)
+                                    }else{
+                                        
+                                    }
+                        
+                                }
+                            }
+                            
+                            //collection oluşturulma
+                            
+                            
+                            
+                            
                         }
                     }
                 }
