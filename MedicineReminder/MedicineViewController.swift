@@ -6,12 +6,18 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestore
 
 class MedicineViewController: UIViewController {
 
     @IBOutlet weak var medicineTableView: UITableView!
     
 //    var medicineList = [Medicine]()
+    
+    var nameList = [String]()
+    var dateList = [String]()
+    var imageList = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +49,7 @@ class MedicineViewController: UIViewController {
 //        navigationController?.navigationBar.standardAppearance = appearance
 //        navigationController?.navigationBar.compactAppearance = appearance
 //        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        fetchFirebase()
     }
     
 
@@ -50,23 +57,56 @@ class MedicineViewController: UIViewController {
         super.viewWillAppear(animated)
         self.tabBarController?.navigationItem.hidesBackButton = true
     }
+    
+    
+    func fetchFirebase(){
+        let firestoreDatabase = Firestore.firestore()
+        firestoreDatabase.collection("Medicine").addSnapshotListener { snapshot, error in
+            if error != nil{
+                print(error?.localizedDescription)
+            }else{
+                if snapshot?.isEmpty != true && snapshot != nil{
+                    for document in snapshot!.documents{
+                        let documentId = document.documentID
+                        print(documentId)
+                        if let imageUrl = document.get("imageurl") as? String{
+                            self.imageList.append(imageUrl)
+                        }
+                        if let name = document.get("medicineName") as? String{
+                            self.nameList.append(name)
+                        }
+                        if let dueDate = document.get("dueDate") as? String{
+                            self.dateList.append(dueDate)
+                        }
+                        
+                    }
+                    self.medicineTableView.reloadData()
+                }
+            }
+        }
+        
+    }
+    
 
 }
 
 extension MedicineViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return medicineList.count
+        return nameList.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        let medicine = medicineList[indexPath.row]
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "medicineCell") as! MedicineTableViewCell
+          let cell = tableView.dequeueReusableCell(withIdentifier: "medicineCell", for: indexPath) as! MedicineTableViewCell
 //        cell.medicineImageView.image = UIImage(named: medicine.image!)
-//        cell.nameMedicineLabel.text = medicine.name
-//        cell.dueDateLabel.text = medicine.dueDate
-//        cell.backgroundColor = UIColor(named: "Color 1" )
-//        cell.cellBackground.layer.cornerRadius = 10.0
-//        cell.cellBackground.backgroundColor = UIColor(named: "Color 2")
-//        return cell
+        cell.nameMedicineLabel.text = nameList[indexPath.row]
+        cell.dueDateLabel.text = dateList[indexPath.row]
+       cell.backgroundColor = UIColor(named: "Color 1" )
+       cell.cellBackground.layer.cornerRadius = 10.0
+     cell.cellBackground.backgroundColor = UIColor(named: "Color 2")
+          return cell
+        
+        
     }
     
 }
