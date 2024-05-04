@@ -30,7 +30,6 @@ class PersonalViewController: UIViewController {
 
 
     @IBAction func logOutButton(_ sender: Any) {
-        
         do{
             try Auth.auth().signOut()
             performSegue(withIdentifier: "toVC", sender: nil)

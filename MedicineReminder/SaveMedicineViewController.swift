@@ -19,16 +19,32 @@ class SaveMedicineViewController: UIViewController,UIImagePickerControllerDelega
     @IBOutlet weak var dueDateTF: UITextField!
     @IBOutlet weak var descriptionTF: UITextView!
     
-    
+    var datePicker: UIDatePicker?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        datePicker = UIDatePicker()
+        datePicker?.datePickerMode = .date
+        dueDateTF.inputView = datePicker
 
         medicineImageView.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectImage))
         medicineImageView.addGestureRecognizer(gestureRecognizer)
+        let getGesture = UITapGestureRecognizer(target: self, action: #selector(gestureRecognize))
+                view.addGestureRecognizer(getGesture)
+        datePicker?.addTarget(self, action: #selector(getDate(uiDatePicker:)), for: .valueChanged)
        
     }
-    
+    @objc func gestureRecognize(){
+            view.endEditing(true)
+        }
+    @objc func getDate(uiDatePicker:UIDatePicker){
+        let format = DateFormatter()
+        format.dateFormat = "MM/dd/yyyy"
+        let currentDate = format.string(from: uiDatePicker.date)
+        dueDateTF.text = currentDate
+    }
     @objc func selectImage(){
         
         let pickerController = UIImagePickerController()

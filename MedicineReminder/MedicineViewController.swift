@@ -56,39 +56,39 @@ class MedicineViewController: UIViewController {
     
     
     func fetchFirebase(){
-        let firestoreDatabase = Firestore.firestore()
-        firestoreDatabase.collection("Medicine").addSnapshotListener { snapshot, error in
-            if error != nil{
-                print(error?.localizedDescription)
-            }else{
-                if let snapshot = snapshot, !snapshot.isEmpty {
-                                    self.originalMedicineList.removeAll(keepingCapacity: false)
-                                    self.medicineList.removeAll(keepingCapacity: false)
-                    
-                    for document in snapshot.documents{
-                        let documentId = document.documentID
-                        print(documentId)
-                        if let imageUrl = document.get("imageurl") as? String{
-                           // self.imageList.append(imageUrl)
-                            if let name = document.get("medicineName") as? String{
-                                //self.nameList.append(name)
-                                if let dueDate = document.get("dueDate") as? String{
-                                   // self.dateList.append(dueDate)
-                                    let medicine = Medicine(image: imageUrl, name: name, dueDate: dueDate)
-                                    self.medicineList.append(medicine)
-                                    self.originalMedicineList.append(medicine)
-                                }
-                            }
-                        }
-                        
-                        
-                        
-                    }
-                    self.medicineTableView.reloadData()
-                }
-            }
+        guard let currentUser = Auth.auth().currentUser else {
+            // Handle the case where the user is not logged in
+            return
         }
         
+        let userEmail = currentUser.email // Assuming you're using email for user identification
+        
+        let firestoreDatabase = Firestore.firestore()
+        firestoreDatabase.collection("Medicine")
+            .whereField("username", isEqualTo: userEmail)
+            .addSnapshotListener { snapshot, error in
+                if error != nil{
+                    print(error?.localizedDescription)
+                } else {
+                    if let snapshot = snapshot, !snapshot.isEmpty {
+                        self.originalMedicineList.removeAll(keepingCapacity: false)
+                        self.medicineList.removeAll(keepingCapacity: false)
+                        
+                        for document in snapshot.documents{
+                            let documentId = document.documentID
+                            print(documentId)
+                            if let imageUrl = document.get("imageurl") as? String,
+                               let name = document.get("medicineName") as? String,
+                               let dueDate = document.get("dueDate") as? String {
+                                   let medicine = Medicine(image: imageUrl, name: name, dueDate: dueDate)
+                                   self.medicineList.append(medicine)
+                                   self.originalMedicineList.append(medicine)
+                            }
+                        }
+                        self.medicineTableView.reloadData()
+                    }
+                }
+            }
     }
     
 
