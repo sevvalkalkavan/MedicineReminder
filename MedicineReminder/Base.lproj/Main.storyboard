@@ -537,28 +537,38 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYw-wd-5ie">
-                                <rect key="frame" x="15" y="120" width="288" height="64"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="zfi-wE-MG6">
+                                <rect key="frame" x="15" y="43" width="283" height="137"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QpE-Pl-Ag6">
-                                        <rect key="frame" x="5" y="15" width="278" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.2784313725" green="0.54901960780000003" blue="0.36078431370000003" alpha="0.0" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take2Heal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pI0-xj-qz3">
+                                        <rect key="frame" x="0.0" y="0.0" width="283" height="54"/>
+                                        <fontDescription key="fontDescription" name="KohinoorGujarati-Regular" family="Kohinoor Gujarati" pointSize="36"/>
+                                        <color key="textColor" name="Color 2"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYw-wd-5ie">
+                                        <rect key="frame" x="0.0" y="82" width="283" height="55"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QpE-Pl-Ag6">
+                                                <rect key="frame" x="5" y="11.666666666666659" width="273" height="31.666666666666671"/>
+                                                <color key="backgroundColor" red="0.2784313725" green="0.54901960780000003" blue="0.36078431370000003" alpha="0.0" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.2784313725" green="0.54901960780000003" blue="0.36078431370000003" alpha="0.32957367549668876" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="QpE-Pl-Ag6" firstAttribute="centerX" secondItem="fYw-wd-5ie" secondAttribute="centerX" id="05z-py-hvR"/>
+                                            <constraint firstItem="QpE-Pl-Ag6" firstAttribute="leading" secondItem="fYw-wd-5ie" secondAttribute="leading" constant="5" id="blQ-Nl-unD"/>
+                                            <constraint firstItem="QpE-Pl-Ag6" firstAttribute="centerY" secondItem="fYw-wd-5ie" secondAttribute="centerY" id="goO-lX-IbU"/>
+                                            <constraint firstAttribute="trailing" secondItem="QpE-Pl-Ag6" secondAttribute="trailing" constant="5" id="xg3-Ou-lhB"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="15"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.2784313725" green="0.54901960780000003" blue="0.36078431370000003" alpha="0.32957367549668876" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="15"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take2Heal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pI0-xj-qz3">
-                                <rect key="frame" x="16" y="51" width="168.33333333333334" height="54"/>
-                                <fontDescription key="fontDescription" name="KohinoorGujarati-Regular" family="Kohinoor Gujarati" pointSize="36"/>
-                                <color key="textColor" name="Color 2"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="BSO-MD-NLb">
                                 <rect key="frame" x="318" y="43" width="60" height="137"/>
                                 <subviews>
@@ -588,6 +598,9 @@
                                         <buttonConfiguration key="configuration" style="plain">
                                             <backgroundConfiguration key="background" image="magnifyingglass.circle" catalog="system"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="searchButton:" destination="DkB-Rb-V3d" eventType="touchUpInside" id="BFE-ll-6Ka"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -595,22 +608,21 @@
                         <viewLayoutGuide key="safeArea" id="Yyi-eH-7ks"/>
                         <color key="backgroundColor" red="0.68627450980000004" green="0.81960784310000001" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="zfi-wE-MG6" firstAttribute="leading" secondItem="Yyi-eH-7ks" secondAttribute="leading" constant="15" id="4hE-CJ-gOR"/>
                             <constraint firstItem="Zcx-jj-nYF" firstAttribute="leading" secondItem="Yyi-eH-7ks" secondAttribute="leading" id="KHa-0l-TwX"/>
-                            <constraint firstItem="fYw-wd-5ie" firstAttribute="top" secondItem="pI0-xj-qz3" secondAttribute="bottom" constant="15" id="MNg-cM-TlG"/>
+                            <constraint firstItem="zfi-wE-MG6" firstAttribute="top" secondItem="nzv-NS-ZzF" secondAttribute="top" constant="43" id="Lia-o5-X9Q"/>
                             <constraint firstItem="Yyi-eH-7ks" firstAttribute="trailing" secondItem="BSO-MD-NLb" secondAttribute="trailing" constant="15" id="Mwe-0j-CWq"/>
-                            <constraint firstItem="fYw-wd-5ie" firstAttribute="leading" secondItem="Yyi-eH-7ks" secondAttribute="leading" constant="15" id="Nn1-Dp-39y"/>
-                            <constraint firstItem="Zcx-jj-nYF" firstAttribute="top" secondItem="fYw-wd-5ie" secondAttribute="bottom" constant="8" symbolic="YES" id="UkD-kq-l8H"/>
-                            <constraint firstItem="fYw-wd-5ie" firstAttribute="top" secondItem="Yyi-eH-7ks" secondAttribute="top" constant="17" id="a31-VZ-56E"/>
-                            <constraint firstItem="pI0-xj-qz3" firstAttribute="leading" secondItem="nzv-NS-ZzF" secondAttribute="leading" constant="16" id="eND-Uu-M9a"/>
+                            <constraint firstItem="Zcx-jj-nYF" firstAttribute="top" secondItem="zfi-wE-MG6" secondAttribute="bottom" constant="12" id="Ysj-e8-m5q"/>
                             <constraint firstItem="Zcx-jj-nYF" firstAttribute="top" secondItem="BSO-MD-NLb" secondAttribute="bottom" constant="12" id="etV-RY-eRQ"/>
                             <constraint firstItem="Yyi-eH-7ks" firstAttribute="trailing" secondItem="Zcx-jj-nYF" secondAttribute="trailing" id="p0f-vX-Ivs"/>
-                            <constraint firstItem="BSO-MD-NLb" firstAttribute="leading" secondItem="fYw-wd-5ie" secondAttribute="trailing" constant="15" id="pBZ-86-24F"/>
+                            <constraint firstItem="BSO-MD-NLb" firstAttribute="leading" secondItem="zfi-wE-MG6" secondAttribute="trailing" constant="20" id="quZ-yf-OMH"/>
                             <constraint firstItem="Yyi-eH-7ks" firstAttribute="bottom" secondItem="Zcx-jj-nYF" secondAttribute="bottom" id="x5S-Qf-n9R"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Medicine" image="pill" catalog="system" id="i1v-pv-ZBr"/>
                     <connections>
                         <outlet property="medicineTableView" destination="Zcx-jj-nYF" id="fHw-zQ-P5K"/>
+                        <outlet property="searchTF" destination="QpE-Pl-Ag6" id="I9Z-z1-LcC"/>
                         <segue destination="YTV-Hh-efc" kind="show" identifier="toDetailVC" id="oiY-An-KbZ"/>
                     </connections>
                 </viewController>
