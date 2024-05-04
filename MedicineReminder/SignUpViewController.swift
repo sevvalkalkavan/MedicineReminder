@@ -13,13 +13,30 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var usernameTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var DateOfBirthTF: UITextField!
-    
+    var datePicker: UIDatePicker?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        datePicker = UIDatePicker()
+        datePicker?.datePickerMode = .date
+        DateOfBirthTF.inputView = datePicker
+        
+        let getGesture = UITapGestureRecognizer(target: self, action: #selector(gestureRecognize))
+                view.addGestureRecognizer(getGesture)
+        datePicker?.addTarget(self, action: #selector(getDate(uiDatePicker:)), for: .valueChanged)
 
         self.navigationController?.navigationBar.tintColor = UIColor.gray
-        // Do any additional setup after loading the view.
+
+    }
+    @objc func gestureRecognize(){
+            view.endEditing(true)
+        }
+    @objc func getDate(uiDatePicker:UIDatePicker){
+        let format = DateFormatter()
+        format.dateFormat = "MM/dd/yyyy"
+        let currentDate = format.string(from: uiDatePicker.date)
+        DateOfBirthTF.text = currentDate
     }
     
     @IBAction func SignUpButton(_ sender: Any) {

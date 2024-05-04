@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
-
+import Kingfisher
 class MedicineViewController: UIViewController {
 
     @IBOutlet weak var medicineTableView: UITableView!
@@ -66,6 +66,12 @@ class MedicineViewController: UIViewController {
                 print(error?.localizedDescription)
             }else{
                 if snapshot?.isEmpty != true && snapshot != nil{
+                    
+                    //bir değerin iki kere yüklenmesi gösterilmesini engeller
+                    self.dateList.removeAll(keepingCapacity: false)
+                    self.imageList.removeAll(keepingCapacity: false)
+                    self.nameList.removeAll(keepingCapacity: false)
+                    
                     for document in snapshot!.documents{
                         let documentId = document.documentID
                         print(documentId)
@@ -101,12 +107,19 @@ extension MedicineViewController: UITableViewDelegate, UITableViewDataSource{
 //        cell.medicineImageView.image = UIImage(named: medicine.image!)
         cell.nameMedicineLabel.text = nameList[indexPath.row]
         cell.dueDateLabel.text = dateList[indexPath.row]
+        DispatchQueue.main.async {
+            cell.medicineImageView.kf.setImage(with: URL(string: self.imageList[indexPath.row]))
+        }
        cell.backgroundColor = UIColor(named: "Color 1" )
        cell.cellBackground.layer.cornerRadius = 10.0
      cell.cellBackground.backgroundColor = UIColor(named: "Color 2")
           return cell
         
         
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "toDetailVC", sender: self) 
     }
     
 }
