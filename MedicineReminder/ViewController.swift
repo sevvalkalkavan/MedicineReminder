@@ -27,7 +27,10 @@ class ViewController: UIViewController {
         
 
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.setHidesBackButton(true, animated: true)
+    }
     
     @IBAction func buttonLogin(_ sender: Any) {
     }

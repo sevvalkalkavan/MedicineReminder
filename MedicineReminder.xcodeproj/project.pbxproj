@@ -27,6 +27,7 @@
 		02455D372BDD4F9900C9689C /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02455D362BDD4F9900C9689C /* PersonalViewController.swift */; };
 		02455D392BDD4FB900C9689C /* MedicineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02455D382BDD4FB900C9689C /* MedicineViewController.swift */; };
 		0260E7002BE68A3900163EE3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0260E6FF2BE68A3900163EE3 /* Kingfisher */; };
+		0260E7022BE6BD6500163EE3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0260E7012BE6BD6500163EE3 /* User.swift */; };
 		028428FE2BDD28A800F0C645 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 028428FD2BDD28A800F0C645 /* GoogleService-Info.plist */; };
 		028429012BDD2BE200F0C645 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 028429002BDD2BE200F0C645 /* FirebaseAuth */; };
 		028429032BDD2BE200F0C645 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 028429022BDD2BE200F0C645 /* FirebaseFirestore */; };
@@ -77,6 +78,7 @@
 		02455D342BDD4F7A00C9689C /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		02455D362BDD4F9900C9689C /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		02455D382BDD4FB900C9689C /* MedicineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineViewController.swift; sourceTree = "<group>"; };
+		0260E7012BE6BD6500163EE3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		028428FD2BDD28A800F0C645 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		02F1CF8F2BDF94DC00415B4B /* DeatilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeatilViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,6 +145,7 @@
 				020A68C22BDCDBD3007D92CA /* Main.storyboard */,
 				023D26082BDEA059000F0C1B /* DetailMedicineViewController.swift */,
 				023D260A2BDEA9B2000F0C1B /* Medicine.swift */,
+				0260E7012BE6BD6500163EE3 /* User.swift */,
 				02455D382BDD4FB900C9689C /* MedicineViewController.swift */,
 				023D260C2BDEB19C000F0C1B /* MedicineTableViewCell.swift */,
 				020A68EC2BDCE775007D92CA /* LogInViewController.swift */,
@@ -326,6 +329,7 @@
 				020A68C12BDCDBD3007D92CA /* ViewController.swift in Sources */,
 				020A68BD2BDCDBD3007D92CA /* AppDelegate.swift in Sources */,
 				023D260B2BDEA9B2000F0C1B /* Medicine.swift in Sources */,
+				0260E7022BE6BD6500163EE3 /* User.swift in Sources */,
 				02455D392BDD4FB900C9689C /* MedicineViewController.swift in Sources */,
 				020A68BF2BDCDBD3007D92CA /* SceneDelegate.swift in Sources */,
 				023D260D2BDEB19C000F0C1B /* MedicineTableViewCell.swift in Sources */,

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class PersonalViewController: UIViewController {
 
@@ -22,10 +23,20 @@ class PersonalViewController: UIViewController {
 //        navigationController?.navigationBar.compactAppearance = appearance
 //        navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.navigationItem.hidesBackButton = true
+        self.navigationItem.setHidesBackButton(true, animated: true)
     }
 
+
+    @IBAction func logOutButton(_ sender: Any) {
+        
+        do{
+            try Auth.auth().signOut()
+            performSegue(withIdentifier: "toVC", sender: nil)
+        }catch{
+            
+        }
+        
+    }
 }
