@@ -26,6 +26,10 @@
 		02455D352BDD4F7A00C9689C /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02455D342BDD4F7A00C9689C /* CalendarViewController.swift */; };
 		02455D372BDD4F9900C9689C /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02455D362BDD4F9900C9689C /* PersonalViewController.swift */; };
 		02455D392BDD4FB900C9689C /* MedicineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02455D382BDD4FB900C9689C /* MedicineViewController.swift */; };
+		024A23492BE7EC5B00CC2B5A /* SaveMedicineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024A23482BE7EC5B00CC2B5A /* SaveMedicineViewModel.swift */; };
+		024A234B2BE7ED3F00CC2B5A /* MedicineDaoRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024A234A2BE7ED3F00CC2B5A /* MedicineDaoRepo.swift */; };
+		024A234D2BE7FAD700CC2B5A /* MedicineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024A234C2BE7FAD700CC2B5A /* MedicineViewModel.swift */; };
+		024A23502BE7FD4700CC2B5A /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 024A234F2BE7FD4700CC2B5A /* RxSwift */; };
 		0260E7002BE68A3900163EE3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0260E6FF2BE68A3900163EE3 /* Kingfisher */; };
 		0260E7022BE6BD6500163EE3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0260E7012BE6BD6500163EE3 /* User.swift */; };
 		028428FE2BDD28A800F0C645 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 028428FD2BDD28A800F0C645 /* GoogleService-Info.plist */; };
@@ -34,7 +38,6 @@
 		028429052BDD2BE200F0C645 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 028429042BDD2BE200F0C645 /* FirebaseFirestoreCombine-Community */; };
 		028429072BDD2BE200F0C645 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 028429062BDD2BE200F0C645 /* FirebaseStorage */; };
 		028429092BDD2BE200F0C645 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 028429082BDD2BE200F0C645 /* FirebaseStorageCombine-Community */; };
-		02F1CF902BDF94DC00415B4B /* DeatilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F1CF8F2BDF94DC00415B4B /* DeatilViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,9 +81,11 @@
 		02455D342BDD4F7A00C9689C /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		02455D362BDD4F9900C9689C /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		02455D382BDD4FB900C9689C /* MedicineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineViewController.swift; sourceTree = "<group>"; };
+		024A23482BE7EC5B00CC2B5A /* SaveMedicineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveMedicineViewModel.swift; sourceTree = "<group>"; };
+		024A234A2BE7ED3F00CC2B5A /* MedicineDaoRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineDaoRepo.swift; sourceTree = "<group>"; };
+		024A234C2BE7FAD700CC2B5A /* MedicineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineViewModel.swift; sourceTree = "<group>"; };
 		0260E7012BE6BD6500163EE3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		028428FD2BDD28A800F0C645 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		02F1CF8F2BDF94DC00415B4B /* DeatilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeatilViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +99,7 @@
 				028429092BDD2BE200F0C645 /* FirebaseStorageCombine-Community in Frameworks */,
 				028429012BDD2BE200F0C645 /* FirebaseAuth in Frameworks */,
 				028429032BDD2BE200F0C645 /* FirebaseFirestore in Frameworks */,
+				024A23502BE7FD4700CC2B5A /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,13 +146,15 @@
 				020A68BC2BDCDBD3007D92CA /* AppDelegate.swift */,
 				020A68BE2BDCDBD3007D92CA /* SceneDelegate.swift */,
 				020A68C02BDCDBD3007D92CA /* ViewController.swift */,
-				02F1CF8F2BDF94DC00415B4B /* DeatilViewController.swift */,
 				023D26062BDEA00E000F0C1B /* SaveMedicineViewController.swift */,
 				020A68C22BDCDBD3007D92CA /* Main.storyboard */,
 				023D26082BDEA059000F0C1B /* DetailMedicineViewController.swift */,
 				023D260A2BDEA9B2000F0C1B /* Medicine.swift */,
+				024A234A2BE7ED3F00CC2B5A /* MedicineDaoRepo.swift */,
+				024A234C2BE7FAD700CC2B5A /* MedicineViewModel.swift */,
 				0260E7012BE6BD6500163EE3 /* User.swift */,
 				02455D382BDD4FB900C9689C /* MedicineViewController.swift */,
+				024A23482BE7EC5B00CC2B5A /* SaveMedicineViewModel.swift */,
 				023D260C2BDEB19C000F0C1B /* MedicineTableViewCell.swift */,
 				020A68EC2BDCE775007D92CA /* LogInViewController.swift */,
 				020A68EE2BDCE791007D92CA /* SignUpViewController.swift */,
@@ -201,6 +209,7 @@
 				028429062BDD2BE200F0C645 /* FirebaseStorage */,
 				028429082BDD2BE200F0C645 /* FirebaseStorageCombine-Community */,
 				0260E6FF2BE68A3900163EE3 /* Kingfisher */,
+				024A234F2BE7FD4700CC2B5A /* RxSwift */,
 			);
 			productName = MedicineReminder;
 			productReference = 020A68B92BDCDBD3007D92CA /* MedicineReminder.app */;
@@ -277,6 +286,7 @@
 			packageReferences = (
 				028428FF2BDD2AF100F0C645 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				02EED6EF2BE6898500F76D56 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				024A234E2BE7FD4700CC2B5A /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 020A68BA2BDCDBD3007D92CA /* Products */;
 			projectDirPath = "";
@@ -323,7 +333,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02F1CF902BDF94DC00415B4B /* DeatilViewController.swift in Sources */,
 				02455D352BDD4F7A00C9689C /* CalendarViewController.swift in Sources */,
 				020A68ED2BDCE775007D92CA /* LogInViewController.swift in Sources */,
 				020A68C12BDCDBD3007D92CA /* ViewController.swift in Sources */,
@@ -335,8 +344,11 @@
 				023D260D2BDEB19C000F0C1B /* MedicineTableViewCell.swift in Sources */,
 				020A68EF2BDCE791007D92CA /* SignUpViewController.swift in Sources */,
 				02455D372BDD4F9900C9689C /* PersonalViewController.swift in Sources */,
+				024A234B2BE7ED3F00CC2B5A /* MedicineDaoRepo.swift in Sources */,
+				024A234D2BE7FAD700CC2B5A /* MedicineViewModel.swift in Sources */,
 				023D26072BDEA00E000F0C1B /* SaveMedicineViewController.swift in Sources */,
 				023D26092BDEA059000F0C1B /* DetailMedicineViewController.swift in Sources */,
+				024A23492BE7EC5B00CC2B5A /* SaveMedicineViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,6 +691,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		024A234E2BE7FD4700CC2B5A /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.7.1;
+			};
+		};
 		028428FF2BDD2AF100F0C645 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -698,6 +718,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		024A234F2BE7FD4700CC2B5A /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 024A234E2BE7FD4700CC2B5A /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
 		0260E6FF2BE68A3900163EE3 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 02EED6EF2BE6898500F76D56 /* XCRemoteSwiftPackageReference "Kingfisher" */;

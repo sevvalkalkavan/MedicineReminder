@@ -79,8 +79,11 @@ class MedicineViewController: UIViewController {
                             print(documentId)
                             if let imageUrl = document.get("imageurl") as? String,
                                let name = document.get("medicineName") as? String,
-                               let dueDate = document.get("dueDate") as? String {
-                                   let medicine = Medicine(image: imageUrl, name: name, dueDate: dueDate)
+                               let dueDate = document.get("dueDate") as? String,
+                               let description = document.get("description") as? String,
+                               let meal = document.get("meal") as? String,
+                                let dosage = document.get("dosage") as? String{
+                                let medicine = Medicine(image: imageUrl, name: name, dueDate: dueDate, description: description, meal: meal, dosage: dosage)
                                    self.medicineList.append(medicine)
                                    self.originalMedicineList.append(medicine)
                             }
@@ -145,8 +148,9 @@ extension MedicineViewController: UITableViewDelegate, UITableViewDataSource, UI
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "toDetailVC", sender: self) 
-        medicineTableView.deselectRow(at: indexPath, animated: true)
+            let selectedMedicine = medicineList[indexPath.row]
+            performSegue(withIdentifier: "toDetailVC", sender: selectedMedicine)
+            medicineTableView.deselectRow(at: indexPath, animated: true)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -157,6 +161,14 @@ extension MedicineViewController: UITableViewDelegate, UITableViewDataSource, UI
         } else {
             // Scrolling upwards, show the navigation bar
             navigationController?.setNavigationBarHidden(false, animated: true)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetailVC",
+            let detailVC = segue.destination as? DetailMedicineViewController,
+            let selectedMedicine = sender as? Medicine {
+            detailVC.medicine = selectedMedicine
         }
     }
     

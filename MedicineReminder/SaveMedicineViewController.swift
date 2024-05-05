@@ -98,7 +98,7 @@ class SaveMedicineViewController: UIViewController,UIImagePickerControllerDelega
                                 }
                             }
                             
-                            //collection oluşturulma
+                       
                             
                             
                             
@@ -110,7 +110,7 @@ class SaveMedicineViewController: UIViewController,UIImagePickerControllerDelega
             
         }
         
-        
+        dismiss(animated: true, completion: nil)
     }
     
     
