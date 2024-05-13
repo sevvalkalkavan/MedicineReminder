@@ -24,7 +24,7 @@ class CalendarCell: UICollectionViewCell {
     
     func setupCellAppearance() {
         // Hücrenin arka plan rengini kırmızı yap
-        self.backgroundColor = UIColor.green
+        self.backgroundColor = UIColor(named: "color")
         
         // Hafif yuvarlaklık eklemek için köşeleri yuvarlat
         self.layer.cornerRadius = 10 // Örneğin, 10 birimlik bir yuvarlaklık

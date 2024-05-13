@@ -10,6 +10,7 @@ import UIKit
 class CalendarViewController: UIViewController {
 
     
+    @IBOutlet weak var medicineTableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var backgroundView: UIView!
@@ -18,13 +19,23 @@ class CalendarViewController: UIViewController {
     var totalSquares = [Date]()
     
     
+    var medicineList = [CalendarMedicine]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        medicineTableView.backgroundColor = UIColor(named: "Color 1")
+        medicineTableView.separatorStyle = .none
+        medicineTableView.dataSource = self
+        medicineTableView.delegate = self
+        
+        let m1 = CalendarMedicine(medicineName: "Parol", medicineDosage: "1 Capsule", medicineMeal: "After Meal", medicineTime: "12:00 AM")
+        let m2 = CalendarMedicine(medicineName: "Parol", medicineDosage: "1 Capsule", medicineMeal: "After Meal", medicineTime: "12:00 AM")
+        medicineList.append(m1)
+        medicineList.append(m2)
 
-
-        collectionView.backgroundColor = UIColor.red
-        backgroundView.backgroundColor = UIColor.red
+        collectionView.backgroundColor = UIColor(named: "Color 1")
+        backgroundView.backgroundColor = UIColor(named: "Color 1")
 
        
         //Navigation
@@ -38,8 +49,12 @@ class CalendarViewController: UIViewController {
 //        navigationController?.navigationBar.compactAppearance = appearance
 //        navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
-     setCellsView()
-      setMonthView()
+        setCellsView()
+        setMonthView()
+        
+        backgroundView.clipsToBounds = true
+                backgroundView.layer.cornerRadius = 10
+                backgroundView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         
         //TabBar
         let apper = UITabBarAppearance()
@@ -135,5 +150,27 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
         selectedDate = totalSquares[indexPath.item]
         collectionView.reloadData()
     }
+    
+}
+
+
+extension CalendarViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return medicineList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let medicine = medicineList[indexPath.row]
+        let cell = medicineTableView.dequeueReusableCell(withIdentifier: "calendarMedicineCell", for: indexPath) as! CalendarMedicineTableViewCell
+        cell.medicineNameLabel.text = medicine.medicineName
+        cell.medicineMealLabel.text = medicine.medicineMeal
+        cell.medicineDosageLabel.text = medicine.medicineDosage
+        cell.medicineTimeLabel.text = medicine.medicineTime
+        cell.backgroundColor = UIColor(named: "Color 1" )
+        cell.cellBackground.layer.cornerRadius = 10.0
+        cell.cellBackground.backgroundColor = UIColor(named: "Color 2")
+        return cell
+    }
+    
     
 }
