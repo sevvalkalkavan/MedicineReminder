@@ -10,8 +10,10 @@ import UIKit
 class CalendarViewController: UIViewController {
 
     
+    @IBOutlet weak var medicineTableView: UITableView!
     @IBOutlet weak var weekCollectionView: UICollectionView!
     @IBOutlet weak var monthLabel: UILabel!
+   
     
     
     var selectedDate = Date()
@@ -23,15 +25,15 @@ class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        weekCollectionView.backgroundColor = UIColor(named: "Color 1")
-//        weekCollectionView.separatorStyle = .none
-        weekCollectionView.dataSource = self
-        weekCollectionView.delegate = self
+        medicineTableView.backgroundColor = UIColor(named: "Color 1")
+        medicineTableView.separatorStyle = .none
+        medicineTableView.dataSource = self
+        medicineTableView.delegate = self
         
-//        let m1 = CalendarMedicine(medicineName: "Parol", medicineDosage: "1 Capsule", medicineMeal: "After Meal", medicineTime: "12:00 AM")
-//        let m2 = CalendarMedicine(medicineName: "Parol", medicineDosage: "1 Capsule", medicineMeal: "After Meal", medicineTime: "12:00 AM")
-//        medicineList.append(m1)
-//        medicineList.append(m2)
+        let m1 = CalendarMedicine(medicineName: "Parol", medicineDosage: "1 Capsule", medicineMeal: "After Meal", medicineTime: "12:00 AM")
+        let m2 = CalendarMedicine(medicineName: "Parol", medicineDosage: "1 Capsule", medicineMeal: "After Meal", medicineTime: "12:00 AM")
+        medicineList.append(m1)
+        medicineList.append(m2)
 
         weekCollectionView.backgroundColor = UIColor(named: "Color 1")
 //        backgroundView.backgroundColor = UIColor(named: "Color 1")
@@ -161,23 +163,23 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
 }
 
 
-//extension CalendarViewController: UITableViewDelegate, UITableViewDataSource{
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return medicineList.count
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let medicine = medicineList[indexPath.row]
-//        let cell = medicineTableView.dequeueReusableCell(withIdentifier: "calendarMedicineCell", for: indexPath) as! CalendarMedicineTableViewCell
-//        cell.medicineNameLabel.text = medicine.medicineName
-//        cell.medicineMealLabel.text = medicine.medicineMeal
-//        cell.medicineDosageLabel.text = medicine.medicineDosage
-//        cell.medicineTimeLabel.text = medicine.medicineTime
-//        cell.backgroundColor = UIColor(named: "Color 1" )
-//        cell.cellBackground.layer.cornerRadius = 10.0
-//        cell.cellBackground.backgroundColor = UIColor(named: "Color 2")
-//        return cell
-//    }
-//    
-//    
-//}
+extension CalendarViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return medicineList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let medicine = medicineList[indexPath.row]
+        let cell = medicineTableView.dequeueReusableCell(withIdentifier: "calendarMedicineCell", for: indexPath) as! CalendarMedicineTableViewCell
+        cell.medicineNameLabel.text = medicine.medicineName
+        cell.mealLabel.text = medicine.medicineMeal
+        cell.dosageLabel.text = medicine.medicineDosage
+        cell.timeLabel.text = medicine.medicineTime
+        cell.backgroundColor = UIColor(named: "Color 1" )
+        cell.cellView.layer.cornerRadius = 12.0
+        cell.cellView.backgroundColor = UIColor(named: "Color 2")
+        return cell
+    }
+    
+    
+}

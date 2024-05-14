@@ -41,6 +41,7 @@
 		028429052BDD2BE200F0C645 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 028429042BDD2BE200F0C645 /* FirebaseFirestoreCombine-Community */; };
 		028429072BDD2BE200F0C645 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 028429062BDD2BE200F0C645 /* FirebaseStorage */; };
 		028429092BDD2BE200F0C645 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 028429082BDD2BE200F0C645 /* FirebaseStorageCombine-Community */; };
+		0286FF992BF35D94002DBF30 /* CalendarMedicineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0286FF962BF35D94002DBF30 /* CalendarMedicineTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		0260E7012BE6BD6500163EE3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		02800AB22BF0C5780012E03B /* CalendarDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDate.swift; sourceTree = "<group>"; };
 		028428FD2BDD28A800F0C645 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0286FF962BF35D94002DBF30 /* CalendarMedicineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMedicineTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 				023D82582BF1F436008D2C4B /* CalendarMedicine.swift */,
 				02455D382BDD4FB900C9689C /* MedicineViewController.swift */,
 				024A23482BE7EC5B00CC2B5A /* SaveMedicineViewModel.swift */,
+				0286FF962BF35D94002DBF30 /* CalendarMedicineTableViewCell.swift */,
 				023D260C2BDEB19C000F0C1B /* MedicineTableViewCell.swift */,
 				02800AB22BF0C5780012E03B /* CalendarDate.swift */,
 				020A68EC2BDCE775007D92CA /* LogInViewController.swift */,
@@ -351,6 +354,7 @@
 				0260E7022BE6BD6500163EE3 /* User.swift in Sources */,
 				02800AB32BF0C5780012E03B /* CalendarDate.swift in Sources */,
 				02455D392BDD4FB900C9689C /* MedicineViewController.swift in Sources */,
+				0286FF992BF35D94002DBF30 /* CalendarMedicineTableViewCell.swift in Sources */,
 				020A68BF2BDCDBD3007D92CA /* SceneDelegate.swift in Sources */,
 				023D260D2BDEB19C000F0C1B /* MedicineTableViewCell.swift in Sources */,
 				020A68EF2BDCE791007D92CA /* SignUpViewController.swift in Sources */,
