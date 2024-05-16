@@ -8,12 +8,14 @@
 import Foundation
 
 class CalendarMedicine{
+    var medicineID: String
     var medicineName: String
     var medicineDosage: String
     var medicineMeal: String
     var medicineTime: String
     
-    init(medicineName: String, medicineDosage: String, medicineMeal: String, medicineTime: String) {
+    init(medicineID: String,medicineName: String, medicineDosage: String, medicineMeal: String, medicineTime: String) {
+        self.medicineID = medicineID
         self.medicineName = medicineName
         self.medicineDosage = medicineDosage
         self.medicineMeal = medicineMeal

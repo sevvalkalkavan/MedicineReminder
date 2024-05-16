@@ -10,11 +10,12 @@ import UIKit
 class CalendarViewController: UIViewController {
 
     
+    @IBOutlet weak var tabView: UIView!
     @IBOutlet weak var medicineTableView: UITableView!
     @IBOutlet weak var weekCollectionView: UICollectionView!
     @IBOutlet weak var monthLabel: UILabel!
    
-    
+    var calendarViewModel = CalendarViewModel()
     
     var selectedDate = Date()
     var totalSquares = [Date]()
@@ -30,10 +31,14 @@ class CalendarViewController: UIViewController {
         medicineTableView.dataSource = self
         medicineTableView.delegate = self
         
-        let m1 = CalendarMedicine(medicineName: "Parol", medicineDosage: "1 Capsule", medicineMeal: "After Meal", medicineTime: "12:00 AM")
-        let m2 = CalendarMedicine(medicineName: "Parol", medicineDosage: "1 Capsule", medicineMeal: "After Meal", medicineTime: "12:00 AM")
-        medicineList.append(m1)
-        medicineList.append(m2)
+
+        _ = calendarViewModel.medicineList.subscribe(onNext: { list in
+            self.medicineList = list
+            DispatchQueue.main.async {
+                self.medicineTableView.reloadData()
+            }
+        })
+        
 
         weekCollectionView.backgroundColor = UIColor(named: "Color 1")
 //        backgroundView.backgroundColor = UIColor(named: "Color 1")
@@ -87,6 +92,7 @@ class CalendarViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.navigationItem.hidesBackButton = true
+        calendarViewModel.loadData()
     }
     
     func changeColor(itemAppearance: UITabBarItemAppearance){
@@ -112,7 +118,7 @@ class CalendarViewController: UIViewController {
             current = CalendarDate().addDays(date: current, days: 1)
         }
         
-        monthLabel.text = CalendarDate().monthString(date: selectedDate) + " " + CalendarDate().yearString(date: selectedDate)
+        monthLabel.text = CalendarDate().monthString(date: selectedDate) + ", " + CalendarDate().yearString(date: selectedDate)
         weekCollectionView.reloadData()
         
     }
@@ -148,8 +154,13 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 0.3
         cell.layer.cornerRadius = 10.0
-        if (date == selectedDate) {
-           //cell.backgroundColor = UIColor.blue
+        if(date == selectedDate)
+        {
+            cell.backgroundColor = UIColor.systemGreen
+        }
+        else
+        {
+            cell.backgroundColor = UIColor.white
         }
         print(selectedDate)
         
@@ -177,8 +188,28 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource{
         cell.timeLabel.text = medicine.medicineTime
         cell.backgroundColor = UIColor(named: "Color 1" )
         cell.cellView.layer.cornerRadius = 12.0
-        cell.cellView.backgroundColor = UIColor(named: "Color 2")
+        cell.cellView.backgroundColor = UIColor(named: "Color 1")
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { contextualAction, view, bool in
+            let medicine = self.medicineList[indexPath.row]
+            let alert = UIAlertController(title: "Delete", message: "\(medicine.medicineName) silinsin mi?", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+            alert.addAction(cancelAction)
+            let okAction = UIAlertAction(title: "Ok", style: .destructive) { action in
+                print("\(medicine.medicineID)")   //bunu id ile yap
+                self.calendarViewModel.deleteMedicine(medicineID: medicine.medicineID)
+                self.calendarViewModel.loadData()
+            }
+            alert.addAction(okAction)
+            self.present(alert, animated: true)
+        }
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+      
     }
     
     
