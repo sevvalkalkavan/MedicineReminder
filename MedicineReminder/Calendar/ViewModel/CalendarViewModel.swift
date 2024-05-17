@@ -26,4 +26,7 @@ class CalendarViewModel{
         cRepo.loadData()
     }
     
+    func checkAndSendNotification(){
+        cRepo.checkAndSendNotification()
+    }
 }

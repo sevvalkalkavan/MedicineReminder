@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class CalendarViewController: UIViewController {
 
@@ -20,8 +21,11 @@ class CalendarViewController: UIViewController {
     var selectedDate = Date()
     var totalSquares = [Date]()
     
-    
     var medicineList = [CalendarMedicine]()
+    
+    
+    var permission = UNUserNotificationCenter.current()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +43,7 @@ class CalendarViewController: UIViewController {
             }
         })
         
+        checkPermission()
 
         weekCollectionView.backgroundColor = UIColor(named: "Color 1")
 //        backgroundView.backgroundColor = UIColor(named: "Color 1")
@@ -89,6 +94,31 @@ class CalendarViewController: UIViewController {
         
 
     }
+    
+    func checkPermission() {
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .authorized:
+                print("Notification permission authorized") // Debug
+                self.calendarViewModel.checkAndSendNotification()
+            case .denied:
+                print("Notification permission denied, requesting permission") // Debug
+                notificationCenter.requestAuthorization(options: [.alert, .sound]) { didAllow, error in
+                    if didAllow {
+                        print("Notification permission granted") // Debug
+                        self.calendarViewModel.checkAndSendNotification()
+                    } else {
+                        print("Notification permission not granted") // Debug
+                    }
+                }
+            default:
+                return
+            }
+        }
+    }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.navigationItem.hidesBackButton = true
@@ -162,7 +192,7 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
         {
             cell.backgroundColor = UIColor.white
         }
-        print(selectedDate)
+        
         
         return cell
     }

@@ -172,4 +172,23 @@ extension MedicineViewController: UITableViewDelegate, UITableViewDataSource, UI
         }
     }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { contextualAction, view, bool in
+            let medicine = self.medicineList[indexPath.row]
+            let alert = UIAlertController(title: "Delete", message: "\(medicine.name) silinsin mi?", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+            alert.addAction(cancelAction)
+            let okAction = UIAlertAction(title: "Ok", style: .destructive) { action in
+                print("\(medicine.name)")   //bunu id ile yap
+                
+            }
+            alert.addAction(okAction)
+            self.present(alert, animated: true)
+        }
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+      
+    }
+    
 }

@@ -8,12 +8,14 @@
 import Foundation
 import RxSwift
 import FirebaseFirestore
+import UserNotifications
 
 class CalendarDaoRepository{
     
     var medicineList = BehaviorSubject<[CalendarMedicine]>(value: [CalendarMedicine]())
     var collectionMedicineCalendar = Firestore.firestore().collection("medicineCalendar")
     
+    var permission = UNUserNotificationCenter.current()
     
     
     func saveMedicine(medicineName: String, dosage: String, meal: String, time: String){
@@ -51,6 +53,41 @@ class CalendarDaoRepository{
         }
         
     }
-    
-    
+    func checkAndSendNotification() {
+         let currentHour = Calendar.current.component(.hour, from: Date())
+         let currentMinute = Calendar.current.component(.minute, from: Date())
+         print("Current Time: \(currentHour):\(currentMinute)") // Debug
+         
+
+        _ = medicineList.subscribe(onNext: { list in
+            print("Loaded Medicines: \(list)") // Debug
+            for medicine in list {
+                let timeComponents = medicine.medicineTime.split(separator: ":")
+                if let hour = Int(timeComponents[0]), let minute = Int(timeComponents[1]) {
+                    var dateComponents = DateComponents()
+                    dateComponents.hour = hour
+                    dateComponents.minute = minute
+                    
+                    // Call dispatchNotification with dateComponents
+                    self.dispatchNotification(id: medicine.medicineID, title: "Medicine Reminder", body: "Time to take your medicine: \(medicine.medicineName)", dateComponents: dateComponents)
+                }
+            }
+        })
+     }
+    func dispatchNotification(id: String, title: String, body: String, dateComponents: DateComponents) {
+        let notificationCenter = UNUserNotificationCenter.current()
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = body
+        content.sound = .default
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
+        
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: [id])
+        notificationCenter.add(request)
+        print("Notification Added: \(id)")
+    }
+
+  
 }

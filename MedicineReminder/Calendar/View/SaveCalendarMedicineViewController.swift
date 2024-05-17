@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import UserNotifications
 class SaveCalendarMedicineViewController: UIViewController {
 
     var saveModel = SaveCalendarViewModel()
@@ -16,6 +16,9 @@ class SaveCalendarMedicineViewController: UIViewController {
     @IBOutlet weak var mealTF: UITextField!
     @IBOutlet weak var timeTF: UITextField!
     var timePicker: UIDatePicker?
+    var permission = false
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +32,9 @@ class SaveCalendarMedicineViewController: UIViewController {
         if #available(iOS 13.4, *){
             timePicker?.preferredDatePickerStyle = .wheels
         }
+        
+        
+        
     }
     
     @objc func gestureRecognize(){
@@ -51,9 +57,23 @@ class SaveCalendarMedicineViewController: UIViewController {
         if let name = medicineNameTF.text, let dosage = dosageTF.text, let meal = mealTF.text, let time = timeTF.text {
             saveModel.saveMedicine(medicineName: name, dosage: dosage, meal: meal, time: time)
         }
+        
+//        if permission{
+//            let content = UNMutableNotificationContent()
+//            content.title = "Title"
+//            content.subtitle = "Subtitle"
+//            content.body = "Body"
+//            content.sound = .default
+//           // let trigger = UNCalendarNotificationTrigger(dateMatching: self.date, repeats: true)
+//            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+//            let request = UNNotificationRequest(identifier: "journalReminder", content: content, trigger: trigger)
+//            UNUserNotificationCenter.current().add(request)
+//
+//        }
+        
         dismiss(animated: true, completion: nil)
     }
-    
+   
     
     func saveMedicine(medicineName: String, dosage: String, meal: String, time: String){
         print("\(medicineName)")
