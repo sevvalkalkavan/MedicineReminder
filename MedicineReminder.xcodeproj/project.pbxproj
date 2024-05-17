@@ -28,9 +28,6 @@
 		02455D372BDD4F9900C9689C /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02455D362BDD4F9900C9689C /* PersonalViewController.swift */; };
 		02455D392BDD4FB900C9689C /* MedicineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02455D382BDD4FB900C9689C /* MedicineViewController.swift */; };
 		0247AB472BF34C540015C9B1 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0247AB462BF34C540015C9B1 /* CalendarCollectionViewCell.swift */; };
-		024A23492BE7EC5B00CC2B5A /* SaveMedicineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024A23482BE7EC5B00CC2B5A /* SaveMedicineViewModel.swift */; };
-		024A234B2BE7ED3F00CC2B5A /* MedicineDaoRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024A234A2BE7ED3F00CC2B5A /* MedicineDaoRepo.swift */; };
-		024A234D2BE7FAD700CC2B5A /* MedicineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024A234C2BE7FAD700CC2B5A /* MedicineViewModel.swift */; };
 		024A23502BE7FD4700CC2B5A /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 024A234F2BE7FD4700CC2B5A /* RxSwift */; };
 		025308692BF3EFDB00EA5B8B /* SaveCalendarMedicineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025308682BF3EFDB00EA5B8B /* SaveCalendarMedicineViewController.swift */; };
 		0260E7002BE68A3900163EE3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0260E6FF2BE68A3900163EE3 /* Kingfisher */; };
@@ -91,9 +88,6 @@
 		02455D362BDD4F9900C9689C /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		02455D382BDD4FB900C9689C /* MedicineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineViewController.swift; sourceTree = "<group>"; };
 		0247AB462BF34C540015C9B1 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
-		024A23482BE7EC5B00CC2B5A /* SaveMedicineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveMedicineViewModel.swift; sourceTree = "<group>"; };
-		024A234A2BE7ED3F00CC2B5A /* MedicineDaoRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineDaoRepo.swift; sourceTree = "<group>"; };
-		024A234C2BE7FAD700CC2B5A /* MedicineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineViewModel.swift; sourceTree = "<group>"; };
 		025308682BF3EFDB00EA5B8B /* SaveCalendarMedicineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveCalendarMedicineViewController.swift; sourceTree = "<group>"; };
 		0260E7012BE6BD6500163EE3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		02800AB22BF0C5780012E03B /* CalendarDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDate.swift; sourceTree = "<group>"; };
@@ -166,12 +160,9 @@
 				020A68C22BDCDBD3007D92CA /* Main.storyboard */,
 				023D26082BDEA059000F0C1B /* DetailMedicineViewController.swift */,
 				023D260A2BDEA9B2000F0C1B /* Medicine.swift */,
-				024A234A2BE7ED3F00CC2B5A /* MedicineDaoRepo.swift */,
-				024A234C2BE7FAD700CC2B5A /* MedicineViewModel.swift */,
 				0260E7012BE6BD6500163EE3 /* User.swift */,
 				02455D382BDD4FB900C9689C /* MedicineViewController.swift */,
 				02FE64E02BF602BC00230512 /* Calendar */,
-				024A23482BE7EC5B00CC2B5A /* SaveMedicineViewModel.swift */,
 				023D260C2BDEB19C000F0C1B /* MedicineTableViewCell.swift */,
 				020A68EC2BDCE775007D92CA /* LogInViewController.swift */,
 				020A68EE2BDCE791007D92CA /* SignUpViewController.swift */,
@@ -406,13 +397,10 @@
 				025308692BF3EFDB00EA5B8B /* SaveCalendarMedicineViewController.swift in Sources */,
 				02455D372BDD4F9900C9689C /* PersonalViewController.swift in Sources */,
 				0247AB472BF34C540015C9B1 /* CalendarCollectionViewCell.swift in Sources */,
-				024A234B2BE7ED3F00CC2B5A /* MedicineDaoRepo.swift in Sources */,
-				024A234D2BE7FAD700CC2B5A /* MedicineViewModel.swift in Sources */,
 				02FE64E42BF6059600230512 /* SaveCalendarViewModel.swift in Sources */,
 				023D26072BDEA00E000F0C1B /* SaveMedicineViewController.swift in Sources */,
 				023D26092BDEA059000F0C1B /* DetailMedicineViewController.swift in Sources */,
 				02FE64E22BF6045200230512 /* CalendarViewModel.swift in Sources */,
-				024A23492BE7EC5B00CC2B5A /* SaveMedicineViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

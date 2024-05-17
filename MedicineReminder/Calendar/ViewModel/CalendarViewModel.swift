@@ -29,4 +29,8 @@ class CalendarViewModel{
     func checkAndSendNotification(){
         cRepo.checkAndSendNotification()
     }
+    func medicineForDate(date: Date) {
+        cRepo.medicineForDate(date: date)
+    }
+    
 }

@@ -57,7 +57,6 @@ class MedicineViewController: UIViewController {
     
     func fetchFirebase(){
         guard let currentUser = Auth.auth().currentUser else {
-            // Handle the case where the user is not logged in
             return
         }
         

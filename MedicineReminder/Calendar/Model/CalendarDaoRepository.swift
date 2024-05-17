@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 import FirebaseFirestore
 import UserNotifications
+import FirebaseAuth
 
 class CalendarDaoRepository{
     
@@ -18,8 +19,8 @@ class CalendarDaoRepository{
     var permission = UNUserNotificationCenter.current()
     
     
-    func saveMedicine(medicineName: String, dosage: String, meal: String, time: String){
-        let med:[String:Any] = ["med_id":"" , "med_name":medicineName, "dosage":dosage, "meal":meal, "time":time]
+    func saveMedicine(medicineName: String, dosage: String, meal: String, time: String, medDay: [String]){
+        let med:[String:Any] = ["med_id":"" , "med_name":medicineName, "dosage":dosage, "meal":meal, "time":time, "medDay": medDay,"username": Auth.auth().currentUser!.email]
         collectionMedicineCalendar.document().setData(med)
     }
     
@@ -32,9 +33,13 @@ class CalendarDaoRepository{
     
     
     func loadData(){
-        collectionMedicineCalendar.addSnapshotListener{ snapshot, error in
-            var list = [CalendarMedicine]()
+        guard let currentUser = Auth.auth().currentUser else {
             
+            return
+        }
+        let userEmail = currentUser.email
+        collectionMedicineCalendar.whereField("username", isEqualTo: userEmail).addSnapshotListener{ snapshot, error in
+            var list = [CalendarMedicine]()
             if let documents = snapshot?.documents{
                 for document in documents{
                     let data = document.data()
@@ -43,8 +48,9 @@ class CalendarDaoRepository{
                     let medicineDosage = data["dosage"] as? String ?? ""
                     let medicineMeal = data["meal"] as? String ?? ""
                     let medicineTime = data["time"] as? String ?? ""
+                    let medicineDays = data["medDay"] as? [String] ?? []
                     
-                    let med = CalendarMedicine(medicineID: medicineID, medicineName: medicineName, medicineDosage: medicineDosage, medicineMeal: medicineMeal, medicineTime: medicineTime)
+                    let med = CalendarMedicine(medicineID: medicineID, medicineName: medicineName, medicineDosage: medicineDosage, medicineMeal: medicineMeal, medicineTime: medicineTime, medDay: medicineDays)
                     list.append(med)
                 }
             }
@@ -88,6 +94,34 @@ class CalendarDaoRepository{
         notificationCenter.add(request)
         print("Notification Added: \(id)")
     }
+    
+    func medicineForDate(date: Date) -> [CalendarMedicine] {
+        var dayMedicine = [CalendarMedicine]()
+        let dayFormatter = DateFormatter()
+        dayFormatter.dateFormat = "E" // Format date to full weekday name, e.g., "Monday"
+        let dayString = dayFormatter.string(from: date)
 
-  
+        _ = medicineList.subscribe(onNext: { list in
+            for med in list {
+                if med.medDay.contains(dayString) {
+                    dayMedicine.append(med)
+                }
+            }
+        })
+
+        return dayMedicine
+    }
+//    func medicineForDate(date: Date){
+//        var dayMedicine = [CalendarMedicine]()
+//        _ = medicineList.subscribe(onNext: { list in
+//            for med in list{
+//                if (Calendar.current.isDate(med.medDay, inSameDayAs: date)){
+//                    dayMedicine.append(med)
+//                }
+//            }
+//        }
+//        
+//    }
+
 }
+                                   

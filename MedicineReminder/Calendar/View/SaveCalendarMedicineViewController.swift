@@ -18,6 +18,7 @@ class SaveCalendarMedicineViewController: UIViewController {
     var timePicker: UIDatePicker?
     var permission = false
     
+    var selectedDays: [String] = []
 
     
     override func viewDidLoad() {
@@ -47,35 +48,36 @@ class SaveCalendarMedicineViewController: UIViewController {
             timeTF.text = currentDate
     }
     
-    @IBAction func daySelected(_ sender: Any) {
-        print((sender as AnyObject).currentTitle)
+    @IBAction func daySelected(_ sender: UIButton) {
+        guard let day = sender.currentTitle else { return }
+        
+        if sender.backgroundColor == UIColor.black {
+            sender.backgroundColor = UIColor(named: "Color 1")
+            if let index = selectedDays.firstIndex(of: day) {
+                selectedDays.remove(at: index)
+            }
+        } else {
+            sender.backgroundColor = UIColor.black
+            if !selectedDays.contains(day) {
+                selectedDays.append(day)
+            }
+        }
+        
+        print(selectedDays)
         
     }
     
     
     @IBAction func saveButton(_ sender: Any) {
-        if let name = medicineNameTF.text, let dosage = dosageTF.text, let meal = mealTF.text, let time = timeTF.text {
-            saveModel.saveMedicine(medicineName: name, dosage: dosage, meal: meal, time: time)
+        if let name = medicineNameTF.text, let dosage = dosageTF.text, let meal = mealTF.text, let time = timeTF.text, !selectedDays.isEmpty {
+            saveModel.saveMedicine(medicineName: name, dosage: dosage, meal: meal, time: time, medDay: selectedDays)
         }
-        
-//        if permission{
-//            let content = UNMutableNotificationContent()
-//            content.title = "Title"
-//            content.subtitle = "Subtitle"
-//            content.body = "Body"
-//            content.sound = .default
-//           // let trigger = UNCalendarNotificationTrigger(dateMatching: self.date, repeats: true)
-//            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
-//            let request = UNNotificationRequest(identifier: "journalReminder", content: content, trigger: trigger)
-//            UNUserNotificationCenter.current().add(request)
-//
-//        }
         
         dismiss(animated: true, completion: nil)
     }
    
     
-    func saveMedicine(medicineName: String, dosage: String, meal: String, time: String){
+    func saveMedicine(medicineName: String, dosage: String, meal: String, time: String, days: [String]){
         print("\(medicineName)")
     }
 

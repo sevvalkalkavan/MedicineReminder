@@ -1234,7 +1234,7 @@
                                         <rect key="frame" x="0.0" y="82" width="283" height="55"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QpE-Pl-Ag6">
-                                                <rect key="frame" x="5" y="11.666666666666657" width="273" height="31.666666666666671"/>
+                                                <rect key="frame" x="5" y="11.666666666666659" width="273" height="31.666666666666671"/>
                                                 <color key="backgroundColor" red="0.2784313725" green="0.54901960780000003" blue="0.36078431370000003" alpha="0.0" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="go"/>

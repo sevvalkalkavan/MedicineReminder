@@ -12,8 +12,11 @@ class SaveCalendarViewModel{
     
     var cRepo = CalendarDaoRepository()
     
-    func saveMedicine(medicineName: String, dosage: String, meal: String, time: String){
-        cRepo.saveMedicine(medicineName: medicineName, dosage: dosage, meal: meal, time: time)
+    func saveMedicine(medicineName: String, dosage: String, meal: String, time: String, medDay: [String]){
+        for day in medDay {
+            cRepo.saveMedicine(medicineName: medicineName, dosage: dosage, meal: meal, time: time, medDay: medDay)
+        }
+        
     }
     
     

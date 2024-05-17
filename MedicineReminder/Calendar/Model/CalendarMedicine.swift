@@ -13,12 +13,13 @@ class CalendarMedicine{
     var medicineDosage: String
     var medicineMeal: String
     var medicineTime: String
-    
-    init(medicineID: String,medicineName: String, medicineDosage: String, medicineMeal: String, medicineTime: String) {
+    var medDay: [String]
+    init(medicineID: String,medicineName: String, medicineDosage: String, medicineMeal: String, medicineTime: String, medDay: [String]) {
         self.medicineID = medicineID
         self.medicineName = medicineName
         self.medicineDosage = medicineDosage
         self.medicineMeal = medicineMeal
         self.medicineTime = medicineTime
+        self.medDay = medDay
     }
 }

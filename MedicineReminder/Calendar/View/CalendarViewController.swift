@@ -35,6 +35,7 @@ class CalendarViewController: UIViewController {
         medicineTableView.dataSource = self
         medicineTableView.delegate = self
         
+        calendarViewModel.medicineForDate(date: selectedDate)
 
         _ = calendarViewModel.medicineList.subscribe(onNext: { list in
             self.medicineList = list
@@ -43,7 +44,7 @@ class CalendarViewController: UIViewController {
             }
         })
         
-        checkPermission()
+       checkPermission()
 
         weekCollectionView.backgroundColor = UIColor(named: "Color 1")
 //        backgroundView.backgroundColor = UIColor(named: "Color 1")
@@ -99,17 +100,12 @@ class CalendarViewController: UIViewController {
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.getNotificationSettings { settings in
             switch settings.authorizationStatus {
-            case .authorized:
-                print("Notification permission authorized") // Debug
+              case .authorized:
                 self.calendarViewModel.checkAndSendNotification()
             case .denied:
-                print("Notification permission denied, requesting permission") // Debug
                 notificationCenter.requestAuthorization(options: [.alert, .sound]) { didAllow, error in
                     if didAllow {
-                        print("Notification permission granted") // Debug
                         self.calendarViewModel.checkAndSendNotification()
-                    } else {
-                        print("Notification permission not granted") // Debug
                     }
                 }
             default:
@@ -117,7 +113,6 @@ class CalendarViewController: UIViewController {
             }
         }
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
