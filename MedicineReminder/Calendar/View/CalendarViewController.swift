@@ -36,13 +36,15 @@ class CalendarViewController: UIViewController {
         medicineTableView.delegate = self
         
         calendarViewModel.medicineForDate(date: selectedDate)
-
-        _ = calendarViewModel.medicineList.subscribe(onNext: { list in
-            self.medicineList = list
-            DispatchQueue.main.async {
-                self.medicineTableView.reloadData()
-            }
-        })
+        medicineTableView.reloadData()
+        calendarViewModel.loadData()
+        
+        _ = calendarViewModel.dayMedicineList.subscribe(onNext: { list in
+                    self.medicineList = list
+                    DispatchQueue.main.async {
+                        self.medicineTableView.reloadData()
+                    }
+                })
         
        checkPermission()
 
@@ -117,6 +119,11 @@ class CalendarViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.navigationItem.hidesBackButton = true
+        calendarViewModel.loadData()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        medicineTableView.reloadData()
         calendarViewModel.loadData()
     }
     
@@ -194,6 +201,10 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedDate = totalSquares[indexPath.item]
         weekCollectionView.reloadData()
+        medicineTableView.reloadData()
+        calendarViewModel.loadData()
+        let d = CalendarDate().dayOfWeek(date: selectedDate)
+        print(d) //output: Fri Thu
     }
     
 }
@@ -201,11 +212,14 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
 
 extension CalendarViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return medicineList.count
+        //return medicineList.count
+        
+       return calendarViewModel.medicineForDate(date: selectedDate).count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let medicine = medicineList[indexPath.row]
+        let medicine = calendarViewModel.medicineForDate(date: selectedDate)[indexPath.row]
+       // let medicine = medicineList[indexPath.row]
         let cell = medicineTableView.dequeueReusableCell(withIdentifier: "calendarMedicineCell", for: indexPath) as! CalendarMedicineTableViewCell
         cell.medicineNameLabel.text = medicine.medicineName
         cell.mealLabel.text = medicine.medicineMeal

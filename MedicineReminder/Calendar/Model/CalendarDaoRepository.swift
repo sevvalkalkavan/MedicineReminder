@@ -15,7 +15,7 @@ class CalendarDaoRepository{
     
     var medicineList = BehaviorSubject<[CalendarMedicine]>(value: [CalendarMedicine]())
     var collectionMedicineCalendar = Firestore.firestore().collection("medicineCalendar")
-    
+    var dayMedicineList = BehaviorSubject<[CalendarMedicine]>(value: [CalendarMedicine]())
     var permission = UNUserNotificationCenter.current()
     
     
@@ -95,33 +95,24 @@ class CalendarDaoRepository{
         print("Notification Added: \(id)")
     }
     
-    func medicineForDate(date: Date) -> [CalendarMedicine] {
+    func medicineForDate(date: Date) -> [CalendarMedicine]{
         var dayMedicine = [CalendarMedicine]()
         let dayFormatter = DateFormatter()
-        dayFormatter.dateFormat = "E" // Format date to full weekday name, e.g., "Monday"
+        dayFormatter.dateFormat = "E" // Abbreviated weekday name, e.g., "Mon"
         let dayString = dayFormatter.string(from: date)
-
+        
         _ = medicineList.subscribe(onNext: { list in
             for med in list {
                 if med.medDay.contains(dayString) {
                     dayMedicine.append(med)
                 }
             }
+            self.dayMedicineList.onNext(dayMedicine)
         })
-
+        print(dayMedicine)
         return dayMedicine
     }
-//    func medicineForDate(date: Date){
-//        var dayMedicine = [CalendarMedicine]()
-//        _ = medicineList.subscribe(onNext: { list in
-//            for med in list{
-//                if (Calendar.current.isDate(med.medDay, inSameDayAs: date)){
-//                    dayMedicine.append(med)
-//                }
-//            }
-//        }
-//        
-//    }
-
 }
+
+
                                    
