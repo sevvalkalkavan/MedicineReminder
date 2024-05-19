@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 class CalendarViewModel{
-    var dayMedicineList = BehaviorSubject<[CalendarMedicine]>(value: [CalendarMedicine]()) // Add this
+   // var dayMedicineList = BehaviorSubject<[CalendarMedicine]>(value: [CalendarMedicine]()) 
 
     var medicineList = BehaviorSubject<[CalendarMedicine]>(value: [CalendarMedicine]())
     var cRepo = CalendarDaoRepository()

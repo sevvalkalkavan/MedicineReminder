@@ -15,12 +15,12 @@ class CalendarDaoRepository{
     
     var medicineList = BehaviorSubject<[CalendarMedicine]>(value: [CalendarMedicine]())
     var collectionMedicineCalendar = Firestore.firestore().collection("medicineCalendar")
-    var dayMedicineList = BehaviorSubject<[CalendarMedicine]>(value: [CalendarMedicine]())
+  //  var dayMedicineList = BehaviorSubject<[CalendarMedicine]>(value: [CalendarMedicine]())
     var permission = UNUserNotificationCenter.current()
     
     
     func saveMedicine(medicineName: String, dosage: String, meal: String, time: String, medDay: [String]){
-        let med:[String:Any] = ["med_id":"" , "med_name":medicineName, "dosage":dosage, "meal":meal, "time":time, "medDay": medDay,"username": Auth.auth().currentUser!.email]
+        let med:[String:Any] = ["med_id":"" , "med_name":medicineName, "dosage":dosage, "meal":meal, "time":time, "medDay": medDay,"username": Auth.auth().currentUser!.email!]
         collectionMedicineCalendar.document().setData(med)
     }
     
@@ -38,7 +38,7 @@ class CalendarDaoRepository{
             return
         }
         let userEmail = currentUser.email
-        collectionMedicineCalendar.whereField("username", isEqualTo: userEmail).addSnapshotListener{ snapshot, error in
+        collectionMedicineCalendar.whereField("username", isEqualTo: userEmail!).addSnapshotListener{ snapshot, error in
             var list = [CalendarMedicine]()
             if let documents = snapshot?.documents{
                 for document in documents{
@@ -95,10 +95,10 @@ class CalendarDaoRepository{
         print("Notification Added: \(id)")
     }
     
-    func medicineForDate(date: Date) -> [CalendarMedicine]{
+    func medicineForDate(date: Date) -> [CalendarMedicine] {
         var dayMedicine = [CalendarMedicine]()
         let dayFormatter = DateFormatter()
-        dayFormatter.dateFormat = "E" // Abbreviated weekday name, e.g., "Mon"
+        dayFormatter.dateFormat = "E" // "Mon"
         let dayString = dayFormatter.string(from: date)
         
         _ = medicineList.subscribe(onNext: { list in
@@ -107,9 +107,7 @@ class CalendarDaoRepository{
                     dayMedicine.append(med)
                 }
             }
-            self.dayMedicineList.onNext(dayMedicine)
         })
-        print(dayMedicine)
         return dayMedicine
     }
 }

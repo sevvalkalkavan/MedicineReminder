@@ -35,16 +35,19 @@ class CalendarViewController: UIViewController {
         medicineTableView.dataSource = self
         medicineTableView.delegate = self
         
-        calendarViewModel.medicineForDate(date: selectedDate)
+        //calendarViewModel.medicineForDate(date: selectedDate)
         medicineTableView.reloadData()
         calendarViewModel.loadData()
         
-        _ = calendarViewModel.dayMedicineList.subscribe(onNext: { list in
-                    self.medicineList = list
-                    DispatchQueue.main.async {
-                        self.medicineTableView.reloadData()
-                    }
-                })
+        
+        updateMedicineList(for: selectedDate)
+        _ = calendarViewModel.medicineList.subscribe(onNext: { list in
+            self.medicineList = list
+            DispatchQueue.main.async {
+                self.updateMedicineList(for: self.selectedDate)
+            }
+            
+        })
         
        checkPermission()
 
@@ -97,7 +100,10 @@ class CalendarViewController: UIViewController {
         
 
     }
-    
+    func updateMedicineList(for date: Date) {
+            medicineList = calendarViewModel.medicineForDate(date: date)
+            medicineTableView.reloadData()
+        }
     func checkPermission() {
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.getNotificationSettings { settings in
