@@ -51,9 +51,12 @@ class CalendarDaoRepository{
                     let medicineDays = data["medDay"] as? [String] ?? []
                     
                     let med = CalendarMedicine(medicineID: medicineID, medicineName: medicineName, medicineDosage: medicineDosage, medicineMeal: medicineMeal, medicineTime: medicineTime, medDay: medicineDays)
+                    
+                   // list.sorted(){ $0.medicineName > $1.medicineName}
                     list.append(med)
                 }
             }
+         
             
             self.medicineList.onNext(list)
         }
@@ -108,7 +111,7 @@ class CalendarDaoRepository{
                 }
             }
         })
-        return dayMedicine
+        return dayMedicine.sorted(){$0.medicineTime < $1.medicineTime}
     }
 }
 

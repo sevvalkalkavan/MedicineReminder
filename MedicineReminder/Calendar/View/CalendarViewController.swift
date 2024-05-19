@@ -101,7 +101,7 @@ class CalendarViewController: UIViewController {
 
     }
     func updateMedicineList(for date: Date) {
-            medicineList = calendarViewModel.medicineForDate(date: date)
+        medicineList = calendarViewModel.medicineForDate(date: date)
             medicineTableView.reloadData()
         }
     func checkPermission() {
@@ -234,6 +234,9 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource{
         cell.backgroundColor = UIColor(named: "Color 1" )
         cell.cellView.layer.cornerRadius = 12.0
         cell.cellView.backgroundColor = UIColor(named: "Color 1")
+//        medicineList.sorted(){
+//            $0.medicineTime > $1.medicineTime
+//        }
         return cell
     }
     
