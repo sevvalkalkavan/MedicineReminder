@@ -38,6 +38,7 @@ class SaveCalendarMedicineViewController: UIViewController {
         
     }
     
+    //MARK: Time
     @objc func gestureRecognize(){
             view.endEditing(true)
     }
@@ -48,6 +49,8 @@ class SaveCalendarMedicineViewController: UIViewController {
             timeTF.text = currentDate
     }
     
+    
+    //MARK: Selected Days
     @IBAction func daySelected(_ sender: UIButton) {
         guard let day = sender.currentTitle else { return }
         
@@ -62,9 +65,7 @@ class SaveCalendarMedicineViewController: UIViewController {
                 selectedDays.append(day)
             }
         }
-        
         print(selectedDays)
-        
     }
     
     
@@ -72,13 +73,9 @@ class SaveCalendarMedicineViewController: UIViewController {
         if let name = medicineNameTF.text, let dosage = dosageTF.text, let meal = mealTF.text, let time = timeTF.text, !selectedDays.isEmpty {
             saveModel.saveMedicine(medicineName: name, dosage: dosage, meal: meal, time: time, medDay: selectedDays)
         }
-        
         dismiss(animated: true, completion: nil)
     }
    
-    
-    func saveMedicine(medicineName: String, dosage: String, meal: String, time: String, days: [String]){
-        print("\(medicineName)")
-    }
+
 
 }

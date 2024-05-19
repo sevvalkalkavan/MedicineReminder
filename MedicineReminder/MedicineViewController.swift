@@ -175,11 +175,11 @@ extension MedicineViewController: UITableViewDelegate, UITableViewDataSource, UI
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { contextualAction, view, bool in
             let medicine = self.medicineList[indexPath.row]
-            let alert = UIAlertController(title: "Delete", message: "\(medicine.name) silinsin mi?", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Delete", message: "\(String(describing: medicine.name)) silinsin mi?", preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
             alert.addAction(cancelAction)
             let okAction = UIAlertAction(title: "Ok", style: .destructive) { action in
-                print("\(medicine.name)")   //bunu id ile yap
+                print("\(String(describing: medicine.name))")   //bunu id ile yap
                 
             }
             alert.addAction(okAction)

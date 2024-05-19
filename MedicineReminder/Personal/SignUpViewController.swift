@@ -12,8 +12,12 @@ class SignUpViewController: UIViewController {
 
     @IBOutlet weak var usernameTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
+    @IBOutlet weak var heightTF: UITextField!
+    @IBOutlet weak var weightTF: UITextField!
     @IBOutlet weak var DateOfBirthTF: UITextField!
     var datePicker: UIDatePicker?
+    
+    var personalDaoRepo = PersonalDaoRepository()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,12 +46,17 @@ class SignUpViewController: UIViewController {
     @IBAction func SignUpButton(_ sender: Any) {
         
         if usernameTF.text != "" && passwordTF.text != "" {
+            
             Auth.auth().createUser(withEmail: usernameTF.text!, password: passwordTF.text!)
             {(authdataresult, error) in
                 if error != nil {
                     self.errorAlert(titleInput: "Error", messageInput: error!.localizedDescription)
                 }else{
                     print("Başarılı hesap oluşturuldu.")
+                    if let name = self.usernameTF.text, let weight = self.weightTF.text, let height = self.heightTF.text , let dob = self.DateOfBirthTF.text {
+                        self.personalDaoRepo.save(name: name, weight: weight, height: height, dob: dob)
+                    }
+                   
                     self.performSegue(withIdentifier: "toCalendarVC", sender: self)
                 }
             

@@ -10,7 +10,7 @@ import UserNotifications
 
 class CalendarViewController: UIViewController {
 
-    
+  
     @IBOutlet weak var tabView: UIView!
     @IBOutlet weak var medicineTableView: UITableView!
     @IBOutlet weak var weekCollectionView: UICollectionView!
@@ -30,7 +30,7 @@ class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        medicineTableView.backgroundColor = UIColor(named: "Color 1")
+        //medicineTableView.backgroundColor = UIColor.red
         medicineTableView.separatorStyle = .none
         medicineTableView.dataSource = self
         medicineTableView.delegate = self
@@ -66,7 +66,7 @@ class CalendarViewController: UIViewController {
 //        navigationController?.navigationBar.compactAppearance = appearance
 //        navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
-       
+        medicineTableView.backgroundColor = UIColor(named: "Color 1")
         
         weekCollectionView.dataSource = self
         weekCollectionView.delegate = self
@@ -231,7 +231,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource{
         cell.mealLabel.text = medicine.medicineMeal
         cell.dosageLabel.text = medicine.medicineDosage
         cell.timeLabel.text = medicine.medicineTime
-        cell.backgroundColor = UIColor(named: "Color 1" )
+        cell.backgroundColor = UIColor(named: "Color 1")
         cell.cellView.layer.cornerRadius = 12.0
         cell.cellView.backgroundColor = UIColor(named: "Color 1")
 //        medicineList.sorted(){
@@ -239,7 +239,9 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource{
 //        }
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
+    }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { contextualAction, view, bool in

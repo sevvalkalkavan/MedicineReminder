@@ -45,6 +45,7 @@ class CalendarDate{
     func dayOfWeek(date: Date) -> String {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "E" // "E" represents  "Mon", "Tue"
+           // dateFormatter.locale = Locale(identifier: "tr")
             return dateFormatter.string(from: date)
         }
     

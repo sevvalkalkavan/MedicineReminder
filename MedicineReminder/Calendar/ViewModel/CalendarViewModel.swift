@@ -9,8 +9,6 @@ import Foundation
 import RxSwift
 
 class CalendarViewModel{
-   // var dayMedicineList = BehaviorSubject<[CalendarMedicine]>(value: [CalendarMedicine]()) 
-
     var medicineList = BehaviorSubject<[CalendarMedicine]>(value: [CalendarMedicine]())
     var cRepo = CalendarDaoRepository()
     
@@ -32,7 +30,7 @@ class CalendarViewModel{
     }
     
     func medicineForDate(date: Date) -> [CalendarMedicine] {
-            return cRepo.medicineForDate(date: date)
-        }
+        return cRepo.medicineForDate(date: date)
+    }
     
 }
