@@ -98,10 +98,6 @@ class SaveMedicineViewController: UIViewController,UIImagePickerControllerDelega
                                 }
                             }
                             
-                       
-                            
-                            
-                            
                             
                         }
                     }

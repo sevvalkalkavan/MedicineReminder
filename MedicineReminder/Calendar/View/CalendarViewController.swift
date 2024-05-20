@@ -29,13 +29,11 @@ class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //medicineTableView.backgroundColor = UIColor.red
+        
+        medicineTableView.backgroundColor = UIColor(named: "Color 1")
         medicineTableView.separatorStyle = .none
         medicineTableView.dataSource = self
         medicineTableView.delegate = self
-        
-        //calendarViewModel.medicineForDate(date: selectedDate)
         medicineTableView.reloadData()
         calendarViewModel.loadData()
         
@@ -49,24 +47,11 @@ class CalendarViewController: UIViewController {
             
         })
         
-       checkPermission()
-
-        weekCollectionView.backgroundColor = UIColor(named: "Color 1")
-//        backgroundView.backgroundColor = UIColor(named: "Color 1")
-
-       
-        //Navigation
-//        self.navigationItem.title = "AppName"
-//        let appearance = UINavigationBarAppearance()
-//        appearance.backgroundColor = UIColor(named: "color")
-//        appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
-//        navigationController?.navigationBar.barStyle = .black
-//        
-//        navigationController?.navigationBar.standardAppearance = appearance
-//        navigationController?.navigationBar.compactAppearance = appearance
-//        navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
-        medicineTableView.backgroundColor = UIColor(named: "Color 1")
+        checkPermission()
+        
+        weekCollectionView.backgroundColor = UIColor(named: "Color 1")
+        
         
         weekCollectionView.dataSource = self
         weekCollectionView.delegate = self
@@ -83,12 +68,7 @@ class CalendarViewController: UIViewController {
         
         weekCollectionView.collectionViewLayout = tasarim
         setMonthView()
-        
-//        backgroundView.clipsToBounds = true
-//                backgroundView.layer.cornerRadius = 10
-//                backgroundView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-//        
-        //TabBar
+       
         let apper = UITabBarAppearance()
         apper.backgroundColor = UIColor(named: "color")
         changeColor(itemAppearance: apper.stackedLayoutAppearance)
@@ -98,17 +78,18 @@ class CalendarViewController: UIViewController {
         tabBarController?.tabBar.scrollEdgeAppearance = apper
         
         
-
+        
     }
+ 
     func updateMedicineList(for date: Date) {
         medicineList = calendarViewModel.medicineForDate(date: date)
-            medicineTableView.reloadData()
-        }
+        medicineTableView.reloadData()
+    }
     func checkPermission() {
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.getNotificationSettings { settings in
             switch settings.authorizationStatus {
-              case .authorized:
+            case .authorized:
                 self.calendarViewModel.checkAndSendNotification()
             case .denied:
                 notificationCenter.requestAuthorization(options: [.alert, .sound]) { didAllow, error in
@@ -140,11 +121,11 @@ class CalendarViewController: UIViewController {
         
         itemAppearance.normal.iconColor = UIColor.brown
         itemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.purple]
-       
+        
     }
     
     
-  
+    
     func setMonthView(){
         totalSquares.removeAll()
         
@@ -178,6 +159,7 @@ class CalendarViewController: UIViewController {
     
 
 }
+
 
 extension CalendarViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -234,9 +216,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource{
         cell.backgroundColor = UIColor(named: "Color 1")
         cell.cellView.layer.cornerRadius = 12.0
         cell.cellView.backgroundColor = UIColor(named: "Color 1")
-//        medicineList.sorted(){
-//            $0.medicineTime > $1.medicineTime
-//        }
+
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

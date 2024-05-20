@@ -27,7 +27,7 @@ class DetailMedicineViewController: UIViewController {
         super.viewDidLoad()
 
         if let medicine = medicine {
-                    medicineImageView.kf.setImage(with: URL(string: medicine.image!))
+            medicineImageView.kf.setImage(with: URL(string: medicine.image))
                     medicineNameLabel.text = medicine.name
                     dosageLabel.text = medicine.dosage
                     descriptionLabel.text = medicine.description

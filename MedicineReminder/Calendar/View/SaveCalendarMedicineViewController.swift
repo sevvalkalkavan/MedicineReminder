@@ -70,10 +70,11 @@ class SaveCalendarMedicineViewController: UIViewController {
     
     
     @IBAction func saveButton(_ sender: Any) {
+       
         if let name = medicineNameTF.text, let dosage = dosageTF.text, let meal = mealTF.text, let time = timeTF.text, !selectedDays.isEmpty {
-            saveModel.saveMedicine(medicineName: name, dosage: dosage, meal: meal, time: time, medDay: selectedDays)
-        }
-        dismiss(animated: true, completion: nil)
+               saveModel.saveMedicine(medicineName: name, dosage: dosage, meal: meal, time: time, medDay: selectedDays)
+           }
+           dismiss(animated: true, completion: nil)
     }
    
 

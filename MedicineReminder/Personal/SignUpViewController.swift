@@ -56,7 +56,6 @@ class SignUpViewController: UIViewController {
                     if let name = self.usernameTF.text, let weight = self.weightTF.text, let height = self.heightTF.text , let dob = self.DateOfBirthTF.text {
                         self.personalDaoRepo.save(name: name, weight: weight, height: height, dob: dob)
                     }
-                   
                     self.performSegue(withIdentifier: "toCalendarVC", sender: self)
                 }
             

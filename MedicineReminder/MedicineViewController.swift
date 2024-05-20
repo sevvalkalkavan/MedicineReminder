@@ -13,7 +13,7 @@ class MedicineViewController: UIViewController {
 
     @IBOutlet weak var medicineTableView: UITableView!
     @IBOutlet weak var searchTF: UITextField!
-    
+    var firestoreDatabase = Firestore.firestore().collection("Medicine")
    var medicineList = [Medicine]()
    var originalMedicineList = [Medicine]()
 //    var nameList = [String]()
@@ -62,9 +62,8 @@ class MedicineViewController: UIViewController {
         
         let userEmail = currentUser.email // Assuming you're using email for user identification
         
-        let firestoreDatabase = Firestore.firestore()
-        firestoreDatabase.collection("Medicine")
-            .whereField("username", isEqualTo: userEmail)
+        //let firestoreDatabase = Firestore.firestore()
+        firestoreDatabase.whereField("username", isEqualTo: userEmail!)
             .addSnapshotListener { snapshot, error in
                 if error != nil{
                     print(error?.localizedDescription)
@@ -82,7 +81,8 @@ class MedicineViewController: UIViewController {
                                let description = document.get("description") as? String,
                                let meal = document.get("meal") as? String,
                                 let dosage = document.get("dosage") as? String{
-                                let medicine = Medicine(image: imageUrl, name: name, dueDate: dueDate, description: description, meal: meal, dosage: dosage)
+                                let medicine = Medicine(id: documentId, image: imageUrl, name: name, dueDate: dueDate, description: description, meal: meal, dosage: dosage)
+                                
                                    self.medicineList.append(medicine)
                                    self.originalMedicineList.append(medicine)
                             }
@@ -113,7 +113,7 @@ extension MedicineViewController: UITextFieldDelegate {
             return
         }
         
-        let filteredMedicines = originalMedicineList.filter { $0.name!.lowercased().contains(searchText.lowercased()) }
+        let filteredMedicines = originalMedicineList.filter { $0.name.lowercased().contains(searchText.lowercased()) }
         medicineList = filteredMedicines
         medicineTableView.reloadData()
     }
@@ -136,7 +136,7 @@ extension MedicineViewController: UITableViewDelegate, UITableViewDataSource, UI
         cell.nameMedicineLabel.text = medicineList[indexPath.row].name
         cell.dueDateLabel.text = medicineList[indexPath.row].dueDate
         DispatchQueue.main.async {
-            cell.medicineImageView.kf.setImage(with: URL(string: self.medicineList[indexPath.row].image!))
+            cell.medicineImageView.kf.setImage(with: URL(string: self.medicineList[indexPath.row].image))
         }
        cell.backgroundColor = UIColor(named: "Color 1" )
        cell.cellBackground.layer.cornerRadius = 10.0
@@ -179,8 +179,8 @@ extension MedicineViewController: UITableViewDelegate, UITableViewDataSource, UI
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
             alert.addAction(cancelAction)
             let okAction = UIAlertAction(title: "Ok", style: .destructive) { action in
-                print("\(String(describing: medicine.name))")   //bunu id ile yap
-                
+                print(medicine.id)   //bunu id ile yap
+                self.firestoreDatabase.document(medicine.id).delete()
             }
             alert.addAction(okAction)
             self.present(alert, animated: true)

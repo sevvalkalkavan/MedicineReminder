@@ -11,7 +11,7 @@ import RxSwift
 class CalendarViewModel{
     var medicineList = BehaviorSubject<[CalendarMedicine]>(value: [CalendarMedicine]())
     var cRepo = CalendarDaoRepository()
-    
+
     init(){
         medicineList = cRepo.medicineList
         loadData()
