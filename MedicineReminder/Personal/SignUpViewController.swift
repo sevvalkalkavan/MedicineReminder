@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var usernameTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
@@ -31,8 +31,25 @@ class SignUpViewController: UIViewController {
         datePicker?.addTarget(self, action: #selector(getDate(uiDatePicker:)), for: .valueChanged)
 
         self.navigationController?.navigationBar.tintColor = UIColor.gray
-
+        
+        
+        usernameTF.delegate = self
+        passwordTF.delegate = self
+        heightTF.delegate = self
+        weightTF.delegate = self
+        DateOfBirthTF.delegate = self
+     
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+
+
     @objc func gestureRecognize(){
             view.endEditing(true)
         }
@@ -63,7 +80,7 @@ class SignUpViewController: UIViewController {
         }else{
             errorAlert(titleInput: "Error", messageInput: "Empty email or password")
         }
-        
+ 
     }
     
     
@@ -73,6 +90,28 @@ class SignUpViewController: UIViewController {
         alert.addAction(okButton)
         self.present(alert, animated: true, completion: nil)
     }
+ 
     
+}
+
+
+extension SignUpViewController{
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

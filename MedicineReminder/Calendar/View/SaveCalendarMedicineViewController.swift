@@ -7,7 +7,7 @@
 
 import UIKit
 import UserNotifications
-class SaveCalendarMedicineViewController: UIViewController {
+class SaveCalendarMedicineViewController: UIViewController, UITextFieldDelegate {
 
     var saveModel = SaveCalendarViewModel()
     
@@ -27,6 +27,11 @@ class SaveCalendarMedicineViewController: UIViewController {
         timePicker = UIDatePicker()
         timePicker?.datePickerMode = .time
         timeTF.inputView = timePicker
+        timeTF.delegate = self
+        medicineNameTF.delegate = self
+        dosageTF.delegate = self
+        mealTF.delegate = self
+
         let getGesture = UITapGestureRecognizer(target: self, action: #selector(gestureRecognize))
         view.addGestureRecognizer(getGesture)
         timePicker?.addTarget(self, action: #selector(getTime(uiDatePicker:)), for: .valueChanged)
@@ -35,8 +40,18 @@ class SaveCalendarMedicineViewController: UIViewController {
         }
         
         
-        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(gestureRecognize))
+        view.addGestureRecognizer(tapGesture)
+      
     }
+    
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+
     
     //MARK: Time
     @objc func gestureRecognize(){
@@ -79,4 +94,40 @@ class SaveCalendarMedicineViewController: UIViewController {
    
 
 
+}
+
+
+extension SaveCalendarMedicineViewController{
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+           if textField == timeTF {
+               if self.view.frame.origin.y == 0 {
+                   UIView.animate(withDuration: 0.3) {
+                       self.view.frame.origin.y = -150
+                   }
+               }
+           }
+       }
+       
+       func textFieldDidEndEditing(_ textField: UITextField) {
+           if textField == timeTF {
+               if self.view.frame.origin.y != 0 {
+                   UIView.animate(withDuration: 0.3) {
+                       self.view.frame.origin.y = 0
+                   }
+               }
+           }
+       }
+       
+       func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+           if textField == medicineNameTF {
+               dosageTF.becomeFirstResponder()
+           } else if textField == dosageTF {
+               mealTF.becomeFirstResponder()
+           } else if textField == mealTF {
+               timeTF.becomeFirstResponder()
+           } else if textField == timeTF {
+               textField.resignFirstResponder()
+           }
+           return true
+       }
 }

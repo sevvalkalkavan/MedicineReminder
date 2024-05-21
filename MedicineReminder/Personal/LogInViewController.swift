@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class LogInViewController: UIViewController {
+class LogInViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var usernameTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
@@ -19,8 +19,26 @@ class LogInViewController: UIViewController {
 
         self.navigationController?.navigationBar.tintColor = UIColor.gray
         
+        usernameTF.delegate = self
+        passwordTF.delegate = self
+     
+        
+      
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(gestureRecognize))
+                view.addGestureRecognizer(tapGesture)
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+
+    @objc func gestureRecognize(){
+            view.endEditing(true)
+        }
     @IBAction func LogInButton(_ sender: Any) {
         
         
@@ -49,4 +67,28 @@ class LogInViewController: UIViewController {
         alert.addAction(okButton)
         self.present(alert, animated: true, completion: nil)
     }
+}
+
+
+extension LogInViewController{
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
 }

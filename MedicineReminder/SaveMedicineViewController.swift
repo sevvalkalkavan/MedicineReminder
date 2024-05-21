@@ -10,7 +10,7 @@ import FirebaseStorage
 import Firebase
 import FirebaseFirestore
 
-class SaveMedicineViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SaveMedicineViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     @IBOutlet weak var medicineImageView: UIImageView!
     @IBOutlet weak var medicineNameTF: UITextField!
@@ -27,6 +27,12 @@ class SaveMedicineViewController: UIViewController,UIImagePickerControllerDelega
         datePicker = UIDatePicker()
         datePicker?.datePickerMode = .date
         dueDateTF.inputView = datePicker
+        
+        descriptionTF.delegate = self
+        medicineNameTF.delegate = self
+        dosageTF.delegate = self
+        mealTF.delegate = self
+        dueDateTF.delegate = self
 
         medicineImageView.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectImage))
@@ -34,8 +40,18 @@ class SaveMedicineViewController: UIViewController,UIImagePickerControllerDelega
         let getGesture = UITapGestureRecognizer(target: self, action: #selector(gestureRecognize))
                 view.addGestureRecognizer(getGesture)
         datePicker?.addTarget(self, action: #selector(getDate(uiDatePicker:)), for: .valueChanged)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(gestureRecognize))
+        view.addGestureRecognizer(tapGesture)
+    
        
     }
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+
     @objc func gestureRecognize(){
             view.endEditing(true)
         }
@@ -117,4 +133,42 @@ class SaveMedicineViewController: UIViewController,UIImagePickerControllerDelega
         self.present(alert, animated: true, completion: nil)
     }
     
+}
+
+
+extension SaveMedicineViewController{
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView == descriptionTF {
+            if self.view.frame.origin.y == 0 {
+                UIView.animate(withDuration: 0.3) {
+                    self.view.frame.origin.y = -150 // İstediğiniz kadar yukarı kaydırın
+                }
+            }
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView == descriptionTF {
+            if self.view.frame.origin.y != 0 {
+                UIView.animate(withDuration: 0.3) {
+                    self.view.frame.origin.y = 0
+                }
+            }
+        }
+    }
+       
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == medicineNameTF {
+            dosageTF.becomeFirstResponder()
+        } else if textField == dosageTF {
+            mealTF.becomeFirstResponder()
+        } else if textField == mealTF {
+            dueDateTF.becomeFirstResponder()
+        } else if textField == dueDateTF {
+            descriptionTF.resignFirstResponder()
+        }else if textField == descriptionTF {
+            textField.resignFirstResponder()
+        }
+        return true
+    }
 }
