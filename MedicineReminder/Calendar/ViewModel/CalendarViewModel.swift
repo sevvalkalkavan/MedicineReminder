@@ -24,6 +24,9 @@ class CalendarViewModel{
     func loadData(){
         cRepo.loadData()
     }
+//    func checkForPermission(){
+//        cRepo.checkForPermission()
+//    }
     
     func checkAndSendNotification(){
         cRepo.checkAndSendNotification()

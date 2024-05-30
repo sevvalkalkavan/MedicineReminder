@@ -45,6 +45,9 @@ class SaveMedicineViewController: UIViewController,UIImagePickerControllerDelega
         view.addGestureRecognizer(tapGesture)
     
        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+      
     }
     deinit {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -137,26 +140,30 @@ class SaveMedicineViewController: UIViewController,UIImagePickerControllerDelega
 
 
 extension SaveMedicineViewController{
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView == descriptionTF {
-            if self.view.frame.origin.y == 0 {
-                UIView.animate(withDuration: 0.3) {
-                    self.view.frame.origin.y = -150 // İstediğiniz kadar yukarı kaydırın
-                }
-            }
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0, descriptionTF.isFirstResponder {
+                           self.view.frame.origin.y -= keyboardSize.height
+                       }
         }
     }
     
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView == descriptionTF {
+   
+        
+        @objc func keyboardWillHide(notification: NSNotification) {
             if self.view.frame.origin.y != 0 {
-                UIView.animate(withDuration: 0.3) {
+                self.view.frame.origin.y = 0
+            }
+        }
+        
+        
+        func textFieldDidBeginEditing(_ textField: UITextField) {
+            if textField == descriptionTF {
+                if self.view.frame.origin.y != 0 {
                     self.view.frame.origin.y = 0
                 }
             }
         }
-    }
-       
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == medicineNameTF {
             dosageTF.becomeFirstResponder()

@@ -607,7 +607,7 @@
                                         </cells>
                                     </collectionView>
                                 </subviews>
-                                <color key="backgroundColor" name="Color 1"/>
+                                <color key="backgroundColor" name="calendar"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="f7e-iY-YSj" secondAttribute="trailing" id="3D6-qm-Pfy"/>
                                     <constraint firstItem="f7e-iY-YSj" firstAttribute="leading" secondItem="1Wb-ro-TPf" secondAttribute="leading" id="Gwc-fs-LpO"/>
@@ -700,7 +700,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" name="Color 1"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="NyA-Z0-lcV" firstAttribute="leading" secondItem="hOV-da-Z6X" secondAttribute="leading" constant="5" id="Oho-iK-eC3"/>
                                                 <constraint firstAttribute="bottom" secondItem="NyA-Z0-lcV" secondAttribute="bottom" constant="5" id="XPg-nJ-6Vh"/>
@@ -726,7 +726,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="w0A-Ue-T5t"/>
-                        <color key="backgroundColor" name="Color 1"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="CR3-AL-Zq5" firstAttribute="top" secondItem="1Wb-ro-TPf" secondAttribute="bottom" constant="80" id="0cG-w9-kAG"/>
                             <constraint firstItem="gow-UR-4sB" firstAttribute="top" secondItem="1Wb-ro-TPf" secondAttribute="bottom" constant="35" id="3CY-Xg-kjX"/>
@@ -1707,14 +1707,17 @@
         <image name="lock" catalog="system" width="125" height="128"/>
         <image name="magnifyingglass.circle" catalog="system" width="128" height="123"/>
         <image name="person" catalog="system" width="128" height="121"/>
-        <image name="pill" catalog="system" width="128" height="123"/>
         <image name="pill" width="85.333335876464844" height="85.333335876464844"/>
+        <image name="pill" catalog="system" width="128" height="123"/>
         <image name="plus.circle" catalog="system" width="128" height="123"/>
         <namedColor name="Color 1">
             <color red="0.68599998950958252" green="0.81999999284744263" blue="0.59600001573562622" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="Color 2">
             <color red="0.27799999713897705" green="0.54900002479553223" blue="0.36100000143051147" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="calendar">
+            <color red="0.53725490196078429" green="0.72549019607843135" blue="0.67843137254901964" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="color">
             <color red="0.72899997234344482" green="0.80000001192092896" blue="0.50599998235702515" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

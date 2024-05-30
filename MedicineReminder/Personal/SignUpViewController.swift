@@ -38,9 +38,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         heightTF.delegate = self
         weightTF.delegate = self
         DateOfBirthTF.delegate = self
-     
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(gestureRecognize))
+                view.addGestureRecognizer(tapGesture)
+     
     }
     
     deinit {
@@ -97,21 +100,42 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
 
 extension SignUpViewController{
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height
+            if DateOfBirthTF.isFirstResponder {
+                return
+            }
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.view.frame.origin.y == 0 {
+                    self.view.frame.origin.y -= keyboardSize.height
+                }
             }
         }
-    }
-
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y = 0
+        
+        @objc func keyboardWillHide(notification: NSNotification) {
+            if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y = 0
+            }
         }
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
+        
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            if textField == usernameTF {
+                passwordTF.becomeFirstResponder()
+            } else if textField == passwordTF {
+                weightTF.becomeFirstResponder()
+            } else if textField == weightTF {
+                heightTF.becomeFirstResponder()
+            } else if textField == heightTF {
+                DateOfBirthTF.becomeFirstResponder()
+            } else if textField == DateOfBirthTF {
+                textField.resignFirstResponder()
+            }
+            return true
+        }
+        
+        func textFieldDidBeginEditing(_ textField: UITextField) {
+            if textField == DateOfBirthTF {
+                if self.view.frame.origin.y != 0 {
+                    self.view.frame.origin.y = 0
+                }
+            }
+        }
 }

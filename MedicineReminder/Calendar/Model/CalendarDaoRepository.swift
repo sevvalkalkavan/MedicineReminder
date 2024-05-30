@@ -58,6 +58,8 @@ class CalendarDaoRepository{
          }
         
     }
+
+    
     func checkAndSendNotification() {
         let currentHour = Calendar.current.component(.hour, from: Date())
         let currentMinute = Calendar.current.component(.minute, from: Date())
@@ -104,6 +106,7 @@ class CalendarDaoRepository{
             }
         })
     }
+
     func dispatchNotification(id: String, title: String, body: String, dateComponents: DateComponents) {
         let notificationCenter = UNUserNotificationCenter.current()
         let content = UNMutableNotificationContent()
@@ -136,4 +139,47 @@ class CalendarDaoRepository{
            })
            return dayMedicine.sorted(){$0.medicineTime < $1.medicineTime}
        }
+    
+    
+    
+    //    func checkForPermission() {
+    //        let notificationCenter = UNUserNotificationCenter.current()
+    //        notificationCenter.getNotificationSettings { settings in
+    //            switch settings.authorizationStatus {
+    //            case .authorized:
+    //                self.dispatchNotification()
+    //            case .denied:
+    //                return
+    //            case .notDetermined:
+    //                notificationCenter.requestAuthorization(options: [.alert, .sound]) { didAllow, error in
+    //                    if didAllow {
+    //                        self.dispatchNotification()
+    //                    }
+    //                }
+    //                default:
+    //                    return
+    //                }
+    //            }
+    //        }
+    //    func dispatchNotification () {
+    //        let id = "id"
+    //        let title = "Time to work out!"
+    //        let body = "Don't be a lazy little butt!"
+    //        let hour = 16
+    //        let minute = 39
+    //        let isDaily = true
+    //        let notificationCenter = UNUserNotificationCenter.current()
+    //        let content = UNMutableNotificationContent()
+    //        content.title = title
+    //        content.body = body
+    //        content.sound = .default
+    //        let calendar = Calendar.current
+    //        var dateComponents = DateComponents(calendar: calendar, timeZone: TimeZone.current)
+    //        dateComponents.hour = hour
+    //        dateComponents.minute = minute
+    //        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: isDaily)
+    //        let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
+    //        notificationCenter.removePendingNotificationRequests(withIdentifiers: [id])
+    //        notificationCenter.add(request)
+    //    }
  }

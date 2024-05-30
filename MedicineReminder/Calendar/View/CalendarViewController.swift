@@ -30,13 +30,14 @@ class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        medicineTableView.backgroundColor = UIColor(named: "Color 1")
+        medicineTableView.backgroundColor = UIColor.white
         medicineTableView.separatorStyle = .none
         medicineTableView.dataSource = self
         medicineTableView.delegate = self
         medicineTableView.reloadData()
         calendarViewModel.loadData()
         
+//        calendarViewModel.checkForPermission()
         
         updateMedicineList(for: selectedDate)
         _ = calendarViewModel.medicineList.subscribe(onNext: { list in
@@ -48,9 +49,9 @@ class CalendarViewController: UIViewController {
         })
         
         
-        checkPermission()
+       checkPermission()
         
-        weekCollectionView.backgroundColor = UIColor(named: "Color 1")
+        weekCollectionView.backgroundColor = UIColor(named: "calendar")
         
         
         weekCollectionView.dataSource = self
@@ -66,11 +67,13 @@ class CalendarViewController: UIViewController {
         
         tasarim.itemSize = CGSize(width: itemGenislik, height: (itemGenislik * 1.4))
         
+        weekCollectionView.layer.cornerRadius = 5 // İstediğiniz köşe yarıçapını belirleyin
+        weekCollectionView.layer.masksToBounds = true
         weekCollectionView.collectionViewLayout = tasarim
         setMonthView()
        
         let apper = UITabBarAppearance()
-        apper.backgroundColor = UIColor(named: "color")
+        apper.backgroundColor = UIColor(named: "calendar")
         changeColor(itemAppearance: apper.stackedLayoutAppearance)
         changeColor(itemAppearance: apper.inlineLayoutAppearance)
         changeColor(itemAppearance: apper.compactInlineLayoutAppearance)
@@ -92,6 +95,8 @@ class CalendarViewController: UIViewController {
             case .authorized:
                 self.calendarViewModel.checkAndSendNotification()
             case .denied:
+                return
+            case .notDetermined:
                 notificationCenter.requestAuthorization(options: [.alert, .sound]) { didAllow, error in
                     if didAllow {
                         self.calendarViewModel.checkAndSendNotification()
@@ -213,9 +218,9 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource{
         cell.mealLabel.text = medicine.medicineMeal
         cell.dosageLabel.text = medicine.medicineDosage
         cell.timeLabel.text = medicine.medicineTime
-        cell.backgroundColor = UIColor(named: "Color 1")
+        cell.backgroundColor = UIColor.white
         cell.cellView.layer.cornerRadius = 12.0
-        cell.cellView.backgroundColor = UIColor(named: "Color 1")
+        cell.cellView.backgroundColor = UIColor.white
 
         return cell
     }
