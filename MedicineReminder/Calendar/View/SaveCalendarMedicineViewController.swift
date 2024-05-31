@@ -69,13 +69,13 @@ class SaveCalendarMedicineViewController: UIViewController, UITextFieldDelegate 
     @IBAction func daySelected(_ sender: UIButton) {
         guard let day = sender.currentTitle else { return }
         
-        if sender.backgroundColor == UIColor.black {
-            sender.backgroundColor = UIColor(named: "Color 1")
+        if sender.backgroundColor == UIColor(named: "select") {
+            sender.backgroundColor = UIColor(named: "font")
             if let index = selectedDays.firstIndex(of: day) {
                 selectedDays.remove(at: index)
             }
         } else {
-            sender.backgroundColor = UIColor.black
+            sender.backgroundColor = UIColor(named: "select")
             if !selectedDays.contains(day) {
                 selectedDays.append(day)
             }

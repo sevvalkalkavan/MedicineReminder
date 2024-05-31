@@ -11,6 +11,9 @@
 	<string>Take permission description</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>SF-Pro-Text-Light.otf</string>
+		<string>SF-Pro-Text-Medium.otf</string>
+		<string>SF-Pro-Text-Semibold.otf</string>
 		<string>PatuaOne-Regular.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>

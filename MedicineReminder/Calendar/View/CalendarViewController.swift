@@ -30,8 +30,10 @@ class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        medicineTableView.backgroundColor = UIColor.white
-        medicineTableView.separatorStyle = .none
+        self.view.backgroundColor = UIColor(named: "collection")
+        
+        medicineTableView.backgroundColor = UIColor(named: "collection")
+        //medicineTableView.separatorStyle = .none
         medicineTableView.dataSource = self
         medicineTableView.delegate = self
         medicineTableView.reloadData()
@@ -51,7 +53,7 @@ class CalendarViewController: UIViewController {
         
        checkPermission()
         
-        weekCollectionView.backgroundColor = UIColor(named: "calendar")
+        weekCollectionView.backgroundColor = UIColor(named: "tabNav")
         
         
         weekCollectionView.dataSource = self
@@ -73,7 +75,7 @@ class CalendarViewController: UIViewController {
         setMonthView()
        
         let apper = UITabBarAppearance()
-        apper.backgroundColor = UIColor(named: "calendar")
+        apper.backgroundColor = UIColor(named: "tabNav")
         changeColor(itemAppearance: apper.stackedLayoutAppearance)
         changeColor(itemAppearance: apper.inlineLayoutAppearance)
         changeColor(itemAppearance: apper.compactInlineLayoutAppearance)
@@ -121,11 +123,11 @@ class CalendarViewController: UIViewController {
     
     func changeColor(itemAppearance: UITabBarItemAppearance){
         //selected
-        itemAppearance.selected.iconColor = UIColor.black
-        itemAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.green]
+        itemAppearance.selected.iconColor = UIColor(named: "select")
+        itemAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor(named: "select")]
         
-        itemAppearance.normal.iconColor = UIColor.brown
-        itemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.purple]
+        itemAppearance.normal.iconColor = UIColor(named: "notselect")
+        itemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor(named: "notselect")]
         
     }
     
@@ -181,11 +183,11 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
         cell.layer.cornerRadius = 10.0
         if(date == selectedDate)
         {
-            cell.backgroundColor = UIColor.systemGreen
+            cell.backgroundColor = UIColor(named: "select")
         }
         else
         {
-            cell.backgroundColor = UIColor.white
+            cell.backgroundColor = UIColor(named: "collection")
         }
         
         
@@ -218,9 +220,9 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource{
         cell.mealLabel.text = medicine.medicineMeal
         cell.dosageLabel.text = medicine.medicineDosage
         cell.timeLabel.text = medicine.medicineTime
-        cell.backgroundColor = UIColor.white
+        cell.backgroundColor = UIColor(named: "collection")
         cell.cellView.layer.cornerRadius = 12.0
-        cell.cellView.backgroundColor = UIColor.white
+        cell.cellView.backgroundColor = UIColor(named: "collection")
 
         return cell
     }
