@@ -1,0 +1,32 @@
+{
+  "images" : [
+    {
+      "filename" : "5897273_health_healthcare_hospital_medical_medicine_icon.png",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "light"
+        }
+      ],
+      "filename" : "5897273_health_healthcare_hospital_medical_medicine_icon 1.png",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "5897273_health_healthcare_hospital_medical_medicine_icon-2.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
