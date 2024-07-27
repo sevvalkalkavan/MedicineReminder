@@ -37,13 +37,7 @@ class ViewController: UIViewController {
     
     @IBAction func buttonSignup(_ sender: Any) {
     }
-//    override func viewDidAppear(_ animated: Bool) {
-//
-//        let gradientLayer = CAGradientLayer()
-//        gradientLayer.frame = view.bounds
-//        gradientLayer.colors = [UIColor.red, UIColor.black]
-//        view.layer.addSublayer(gradientLayer)
-//    }
+
     
 }
 

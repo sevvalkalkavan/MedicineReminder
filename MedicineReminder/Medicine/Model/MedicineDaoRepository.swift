@@ -92,7 +92,7 @@ class MedicineDaoRepository {
     func sortDate(list: [Medicine]) -> [Medicine] {
         return list.sorted { (medicine1, medicine2) -> Bool in
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MM-dd-yyyy" // Assuming date is in this format
+            dateFormatter.dateFormat = "MM-dd-yyyy" 
             if let date1 = dateFormatter.date(from: medicine1.dueDate),
                let date2 = dateFormatter.date(from: medicine2.dueDate) {
                 return date1 < date2

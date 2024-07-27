@@ -1229,7 +1229,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lwv-2C-lfb">
                                         <rect key="frame" x="0.0" y="264" width="339" height="240"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLm-5U-m2R">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLm-5U-m2R">
                                                 <rect key="frame" x="8" y="15.999999999999998" width="323" height="20.333333333333329"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="17"/>
                                                 <color key="textColor" red="0.16862745100000001" green="0.20392156859999999" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1806,7 +1806,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Rwn-jk-4ly"/>
+        <segue reference="Ug4-wW-kfX"/>
         <segue reference="ShC-xK-Lde"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -1822,8 +1822,8 @@
         <image name="lock" catalog="system" width="125" height="128"/>
         <image name="magnifyingglass.circle" catalog="system" width="128" height="123"/>
         <image name="person" catalog="system" width="128" height="121"/>
-        <image name="pill" catalog="system" width="128" height="123"/>
         <image name="pill" width="254" height="141"/>
+        <image name="pill" catalog="system" width="128" height="123"/>
         <image name="plus.circle" catalog="system" width="128" height="123"/>
         <image name="weight" width="512" height="512"/>
         <namedColor name="collection">

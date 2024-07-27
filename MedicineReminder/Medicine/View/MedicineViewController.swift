@@ -27,10 +27,10 @@ class MedicineViewController: UIViewController {
         medicineTableView.delegate = self
         searchTF.delegate = self
 
-        // Veri yüklendikten sonra tabloyu güncelle
+       
         _ = medicineVievModel.medicineList.subscribe(onNext: { list in
             self.medicineList = list
-            self.originalMedicineList = list // Orijinal listeyi burada saklıyoruz
+            self.originalMedicineList = list
             DispatchQueue.main.async {
                 self.medicineTableView.reloadData()
             }
@@ -52,45 +52,7 @@ class MedicineViewController: UIViewController {
         medicineTableView.reloadData()
     }
     
-    
-//    func fetchFirebase(){
-//        guard let currentUser = Auth.auth().currentUser else {
-//            return
-//        }
-//        
-//        let userEmail = currentUser.email // Assuming you're using email for user identification
-//        
-//        //let firestoreDatabase = Firestore.firestore()
-//        firestoreDatabase.whereField("username", isEqualTo: userEmail!)
-//            .addSnapshotListener { snapshot, error in
-//                if error != nil{
-//                    print(error?.localizedDescription)
-//                } else {
-//                    if let snapshot = snapshot, !snapshot.isEmpty {
-//                        self.originalMedicineList.removeAll(keepingCapacity: false)
-//                        self.medicineList.removeAll(keepingCapacity: false)
-//                        
-//                        for document in snapshot.documents{
-//                            let documentId = document.documentID
-//                            print(documentId)
-//                            if let imageUrl = document.get("imageurl") as? String,
-//                               let name = document.get("medicineName") as? String,
-//                               let dueDate = document.get("dueDate") as? String,
-//                               let description = document.get("description") as? String,
-//                               let meal = document.get("meal") as? String,
-//                                let dosage = document.get("dosage") as? String{
-//                                let medicine = Medicine(id: documentId, image: imageUrl, name: name, dueDate: dueDate, description: description, meal: meal, dosage: dosage)
-//                                
-//                                   self.medicineList.append(medicine)
-//                                   self.originalMedicineList.append(medicine)
-//                            }
-//                        }
-//                        self.medicineTableView.reloadData()
-//                    }
-//                }
-//            }
-//    }
-//    
+ 
 
 }
 
@@ -104,7 +66,6 @@ extension MedicineViewController: UITextFieldDelegate {
     
     func searchMedicine(with searchText: String) {
         guard !searchText.isEmpty else {
-            // If the search text is empty, reload the original list
             medicineVievModel.loadData()
             return
         }
@@ -140,10 +101,8 @@ extension MedicineViewController: UITableViewDelegate, UITableViewDataSource, UI
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.contentOffset.y
         if yOffset > 0 {
-            // Scrolling downwards, hide the navigation bar
             navigationController?.setNavigationBarHidden(true, animated: true)
         } else {
-            // Scrolling upwards, show the navigation bar
             navigationController?.setNavigationBarHidden(false, animated: true)
         }
     }
@@ -160,7 +119,7 @@ extension MedicineViewController: UITableViewDelegate, UITableViewDataSource, UI
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { contextualAction, view, bool in
             let medicine = self.medicineList[indexPath.row]
-            let alert = UIAlertController(title: "Delete", message: "\(String(describing: medicine.name)) silinsin mi?", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Delete", message: " Should the \(String(describing: medicine.name)) be deleted?", preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
             alert.addAction(cancelAction)
             let okAction = UIAlertAction(title: "Ok", style: .destructive) { action in

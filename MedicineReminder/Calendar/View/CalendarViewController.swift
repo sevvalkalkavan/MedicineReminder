@@ -62,14 +62,12 @@ class CalendarViewController: UIViewController {
         let tasarim  = UICollectionViewFlowLayout()
         tasarim.sectionInset = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
         tasarim.minimumInteritemSpacing = 2
-        
-        // 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 = 16
         let ekranGenislik = UIScreen.main.bounds.width
         let itemGenislik = (ekranGenislik - 16) / 7
         
         tasarim.itemSize = CGSize(width: itemGenislik, height: (itemGenislik * 1.4))
         
-        weekCollectionView.layer.cornerRadius = 5 // İstediğiniz köşe yarıçapını belirleyin
+        weekCollectionView.layer.cornerRadius = 5
         weekCollectionView.layer.masksToBounds = true
         weekCollectionView.collectionViewLayout = tasarim
         setMonthView()
@@ -90,6 +88,7 @@ class CalendarViewController: UIViewController {
         medicineList = calendarViewModel.medicineForDate(date: date)
         medicineTableView.reloadData()
     }
+
     func checkPermission() {
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.getNotificationSettings { settings in
@@ -177,7 +176,7 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "callCell", for: indexPath) as! CalendarCollectionViewCell
         let date = totalSquares[indexPath.item]
         cell.monthOfDayLabel.text = String(CalendarDate().daysOfMonth(date: date))
-        cell.weekOfDayLabel.text = CalendarDate().dayOfWeek(date: date) // Set the day of week
+        cell.weekOfDayLabel.text = CalendarDate().dayOfWeek(date: date)
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 0.3
         cell.layer.cornerRadius = 10.0
@@ -195,27 +194,22 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedDate = totalSquares[indexPath.item]
+        updateMedicineList(for: selectedDate)
         weekCollectionView.reloadData()
-        medicineTableView.reloadData()
-        calendarViewModel.loadData()
-        let d = CalendarDate().dayOfWeek(date: selectedDate)
-        print(d) //output: Fri Thu
     }
+
     
 }
 
 
 extension CalendarViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return medicineList.count
-        
-       return calendarViewModel.medicineForDate(date: selectedDate).count
+        return medicineList.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let medicine = calendarViewModel.medicineForDate(date: selectedDate)[indexPath.row]
-       // let medicine = medicineList[indexPath.row]
-        let cell = medicineTableView.dequeueReusableCell(withIdentifier: "calendarMedicineCell", for: indexPath) as! CalendarMedicineTableViewCell
+        let medicine = medicineList[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "calendarMedicineCell", for: indexPath) as! CalendarMedicineTableViewCell
         cell.medicineNameLabel.text = medicine.medicineName
         cell.mealLabel.text = medicine.medicineMeal
         cell.dosageLabel.text = medicine.medicineDosage
@@ -223,31 +217,33 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource{
         cell.backgroundColor = UIColor(named: "collection")
         cell.cellView.layer.cornerRadius = 12.0
         cell.cellView.backgroundColor = UIColor(named: "collection")
-
         return cell
     }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
-    }
+           let medicine = medicineList[indexPath.row]
+           print("eklenen id: \(medicine.medicineID)")
+       }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { contextualAction, view, bool in
             let medicine = self.medicineList[indexPath.row]
-            let alert = UIAlertController(title: "Delete", message: "\(medicine.medicineName) silinsin mi?", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Delete", message: "Should the \(medicine.medicineName) be deleted?", preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
             alert.addAction(cancelAction)
             let okAction = UIAlertAction(title: "Ok", style: .destructive) { action in
-                print("\(medicine.medicineID)")   //bunu id ile yap
+                print("\(medicine.medicineID)")
                 self.calendarViewModel.deleteMedicine(medicineID: medicine.medicineID)
                 self.calendarViewModel.loadData()
+                self.updateMedicineList(for: self.selectedDate)
             }
             alert.addAction(okAction)
             self.present(alert, animated: true)
         }
-        
+
         return UISwipeActionsConfiguration(actions: [deleteAction])
-      
     }
+
+    
     
     
 }

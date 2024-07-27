@@ -73,7 +73,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 if error != nil {
                     self.signUpviewModel.errorAlert(titleInput: "Error", messageInput: error!.localizedDescription, viewController: self)
                 }else{
-                    print("Başarılı hesap oluşturuldu.")
                     if let name = self.usernameTF.text, let weight = self.weightTF.text, let height = self.heightTF.text , let dob = self.DateOfBirthTF.text {
                         self.signUpviewModel.save(name: name, weight: weight, height: height, dob: dob)
                     }

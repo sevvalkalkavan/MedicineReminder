@@ -70,12 +70,11 @@ class SaveMedicineViewController: UIViewController,UIImagePickerControllerDelega
         
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
-        pickerController.sourceType = .photoLibrary //uygulama canlıya alındığı zaman camera olarak değiştirilecek
+        pickerController.sourceType = .photoLibrary
         present(pickerController, animated: true, completion: nil)
         
     }
 
-    //media seçildikten sonra olacaklar
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         medicineImageView.image = info[.originalImage] as? UIImage
         self.dismiss(animated: true, completion: nil)
