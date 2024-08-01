@@ -86,7 +86,7 @@ extension MedicineViewController: UITableViewDelegate, UITableViewDataSource, UI
         DispatchQueue.main.async {
             cell.medicineImageView.kf.setImage(with: URL(string: self.medicineList[indexPath.row].image))
         }
-        cell.backgroundColor = UIColor(named: "collection" )
+        cell.backgroundColor = UIColor(named: "background" )
         cell.cellBackground.layer.cornerRadius = 10.0
         cell.cellBackground.backgroundColor = UIColor(named: "cell")
         return cell

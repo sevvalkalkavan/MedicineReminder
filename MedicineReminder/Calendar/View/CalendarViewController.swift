@@ -30,9 +30,9 @@ class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor(named: "collection")
+        self.view.backgroundColor = UIColor(named: "tabBar")
         
-        medicineTableView.backgroundColor = UIColor(named: "collection")
+        medicineTableView.backgroundColor = UIColor(named: "tabBar")
         //medicineTableView.separatorStyle = .none
         medicineTableView.dataSource = self
         medicineTableView.delegate = self
@@ -53,7 +53,7 @@ class CalendarViewController: UIViewController {
         
        checkPermission()
         
-        weekCollectionView.backgroundColor = UIColor(named: "tabNav")
+        weekCollectionView.backgroundColor = UIColor(named: "tabBar")
         
         
         weekCollectionView.dataSource = self
@@ -73,7 +73,7 @@ class CalendarViewController: UIViewController {
         setMonthView()
        
         let apper = UITabBarAppearance()
-        apper.backgroundColor = UIColor(named: "tabNav")
+        apper.backgroundColor = UIColor(named: "tabBar")
         changeColor(itemAppearance: apper.stackedLayoutAppearance)
         changeColor(itemAppearance: apper.inlineLayoutAppearance)
         changeColor(itemAppearance: apper.compactInlineLayoutAppearance)
@@ -186,7 +186,7 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
         }
         else
         {
-            cell.backgroundColor = UIColor(named: "collection")
+            cell.backgroundColor = UIColor(named: "background")
         }
         
         
@@ -214,9 +214,9 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource{
         cell.mealLabel.text = medicine.medicineMeal
         cell.dosageLabel.text = medicine.medicineDosage
         cell.timeLabel.text = medicine.medicineTime
-        cell.backgroundColor = UIColor(named: "collection")
+        cell.backgroundColor = UIColor(named: "background")
         cell.cellView.layer.cornerRadius = 12.0
-        cell.cellView.backgroundColor = UIColor(named: "collection")
+        cell.cellView.backgroundColor = UIColor(named: "background")
         return cell
     }
 

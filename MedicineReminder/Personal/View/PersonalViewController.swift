@@ -25,10 +25,10 @@ class PersonalViewController: UIViewController {
         _ = personalViewModel.personList.subscribe(onNext: { [weak self] list in
             guard let self = self, let person = list.first else { return }
             DispatchQueue.main.async {
-                self.usernameLabel.text = "Username: \(person.username)"
-                self.ageLabel.text = "Age: \(person.age)"
-                self.weightLabel.text = "Weight: \(person.weight)"
-                self.heightLabel.text = "Height: \(person.height)"
+                self.usernameLabel.text = "\(person.username)"
+                self.ageLabel.text = "\(person.age)"
+                self.weightLabel.text = "\(person.weight)"
+                self.heightLabel.text = "\(person.height)"
             }
         })
         
