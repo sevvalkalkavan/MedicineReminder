@@ -8,8 +8,26 @@ class CalendarDaoRepository {
     var medicineList = BehaviorSubject<[CalendarMedicine]>(value: [CalendarMedicine]())
     var permission = UNUserNotificationCenter.current()
     var collectionMedicineCalendar = Firestore.firestore().collection("medicineCalendar")
+    private var authStateListenerHandle: AuthStateDidChangeListenerHandle?
+
+    init() {
+        authStateListenerHandle = Auth.auth().addStateDidChangeListener { [weak self] auth, user in
+            if user == nil {
+                self?.permission.removeAllPendingNotificationRequests()
+            } else {
+                self?.loadData()
+            }
+        }
+    }
+
+    deinit {
+        if let handle = authStateListenerHandle {
+            Auth.auth().removeStateDidChangeListener(handle)
+        }
+    }
 
     func saveMedicine(medicineID: String, medicineName: String, dosage: String, meal: String, time: String, medDays: [String]) {
+        guard let currentUser = Auth.auth().currentUser else { return }
         let med: [String: Any] = [
             "med_id": medicineID,
             "med_name": medicineName,
@@ -17,7 +35,7 @@ class CalendarDaoRepository {
             "meal": meal,
             "time": time,
             "medDay": medDays,
-            "username": Auth.auth().currentUser!.email!
+            "username": currentUser.email!
         ]
         collectionMedicineCalendar.document(medicineID).setData(med)
     }
@@ -30,18 +48,16 @@ class CalendarDaoRepository {
                 for document in querySnapshot!.documents {
                     document.reference.delete()
                 }
-                print("silinen id: \(medicineID)")
+                print("Deleted medicine with id: \(medicineID)")
                 self.loadData()
             }
         }
     }
 
     func loadData() {
-        guard let currentUser = Auth.auth().currentUser else {
-            return
-        }
-        let userEmail = currentUser.email
-        collectionMedicineCalendar.whereField("username", isEqualTo: userEmail!).addSnapshotListener { snapshot, error in
+        guard let currentUser = Auth.auth().currentUser else { return }
+        let userEmail = currentUser.email!
+        collectionMedicineCalendar.whereField("username", isEqualTo: userEmail).addSnapshotListener { snapshot, error in
             var list = [CalendarMedicine]()
             if let documents = snapshot?.documents {
                 for document in documents {
@@ -58,15 +74,16 @@ class CalendarDaoRepository {
                     list.append(med)
                 }
             }
-
             self.medicineList.onNext(list)
         }
     }
 
     func checkAndSendNotification() {
+        guard Auth.auth().currentUser != nil else { return }
         let currentHour = Calendar.current.component(.hour, from: Date())
         let currentMinute = Calendar.current.component(.minute, from: Date())
         let currentDate = Calendar.current.component(.weekday, from: Date())
+
         _ = medicineList.subscribe(onNext: { list in
             print("Loaded Medicines: \(list)")
             for medicine in list {
@@ -95,7 +112,6 @@ class CalendarDaoRepository {
                 if medicineWeekdays.contains(currentDate) {
                     var dateComponents = DateComponents()
                     if let hour = Int(timeComponents[0]), let minute = Int(timeComponents[1]) {
-                        var dateComponents = DateComponents()
                         dateComponents.hour = hour
                         dateComponents.minute = minute
 

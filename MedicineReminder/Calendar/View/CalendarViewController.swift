@@ -90,25 +90,25 @@ class CalendarViewController: UIViewController {
     }
 
     func checkPermission() {
-        let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.getNotificationSettings { settings in
-            switch settings.authorizationStatus {
-            case .authorized:
-                self.calendarViewModel.checkAndSendNotification()
-            case .denied:
-                return
-            case .notDetermined:
-                notificationCenter.requestAuthorization(options: [.alert, .sound]) { didAllow, error in
-                    if didAllow {
-                        self.calendarViewModel.checkAndSendNotification()
-                    }
-                }
-            default:
-                return
-            }
-        }
-    }
-    
+           let notificationCenter = UNUserNotificationCenter.current()
+           notificationCenter.getNotificationSettings { settings in
+               switch settings.authorizationStatus {
+               case .authorized:
+                   self.calendarViewModel.checkAndSendNotification()
+               case .denied:
+                   return
+               case .notDetermined:
+                   notificationCenter.requestAuthorization(options: [.alert, .sound]) { didAllow, error in
+                       if didAllow {
+                           self.calendarViewModel.checkAndSendNotification()
+                       }
+                   }
+               default:
+                   return
+               }
+           }
+       }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.navigationItem.hidesBackButton = true

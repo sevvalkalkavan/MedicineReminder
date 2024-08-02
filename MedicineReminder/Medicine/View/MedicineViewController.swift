@@ -59,19 +59,27 @@ class MedicineViewController: UIViewController {
 extension MedicineViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let newText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        searchMedicine(with: newText)
-        return true
-    }
-    
-    func searchMedicine(with searchText: String) {
-        guard !searchText.isEmpty else {
-            medicineVievModel.loadData()
-            return
-        }
-        
-        medicineVievModel.searchMedicine(searchWord: searchText)
-    }
+          let newText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+          searchMedicine(with: newText)
+          return true
+      }
+      
+      func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+          textField.resignFirstResponder() // Dismiss the keyboard
+          if let searchText = textField.text {
+              searchMedicine(with: searchText)
+          }
+          return true
+      }
+
+      func searchMedicine(with searchText: String) {
+          guard !searchText.isEmpty else {
+              medicineVievModel.loadData()
+              return
+          }
+          
+          medicineVievModel.searchMedicine(searchWord: searchText)
+      }
 }
 
 extension MedicineViewController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
@@ -86,7 +94,7 @@ extension MedicineViewController: UITableViewDelegate, UITableViewDataSource, UI
         DispatchQueue.main.async {
             cell.medicineImageView.kf.setImage(with: URL(string: self.medicineList[indexPath.row].image))
         }
-        cell.backgroundColor = UIColor(named: "background" )
+        //cell.backgroundColor = UIColor(named: "background" )
         cell.cellBackground.layer.cornerRadius = 10.0
         cell.cellBackground.backgroundColor = UIColor(named: "cell")
         return cell
@@ -96,7 +104,9 @@ extension MedicineViewController: UITableViewDelegate, UITableViewDataSource, UI
         let selectedMedicine = medicineList[indexPath.row]
         performSegue(withIdentifier: "toDetailVC", sender: selectedMedicine)
         medicineTableView.deselectRow(at: indexPath, animated: true)
+        
     }
+    
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.contentOffset.y

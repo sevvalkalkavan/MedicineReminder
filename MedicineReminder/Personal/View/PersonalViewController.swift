@@ -42,12 +42,12 @@ class PersonalViewController: UIViewController {
 
 
     @IBAction func logOutButton(_ sender: Any) {
-        do{
-            try Auth.auth().signOut()
-            performSegue(withIdentifier: "toVC", sender: nil)
-        }catch{
-            
-        }
+        do {
+                    try Auth.auth().signOut()
+                    navigationController?.popToRootViewController(animated: true)
+                } catch {
+                    print("Error signing out: \(error.localizedDescription)")
+                }
         
     }
 }

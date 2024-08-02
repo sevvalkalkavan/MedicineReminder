@@ -21,8 +21,12 @@ class MedicineTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-       
-        
+        if selected{
+            self.contentView.backgroundColor = UIColor.black
+        }else{
+            self.contentView.backgroundColor = UIColor(named: "background")
+        }
+
         
     }
 
