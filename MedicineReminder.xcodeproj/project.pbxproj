@@ -19,6 +19,7 @@
 		020A68ED2BDCE775007D92CA /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020A68EC2BDCE775007D92CA /* LogInViewController.swift */; };
 		020A68EF2BDCE791007D92CA /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020A68EE2BDCE791007D92CA /* SignUpViewController.swift */; };
 		021D5CB82BDED192001A9974 /* PatuaOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 021D5CB72BDED192001A9974 /* PatuaOne-Regular.ttf */; };
+		022030922C6A5AC2008795B1 /* GoogleService-Info-2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 022030912C6A5AC2008795B1 /* GoogleService-Info-2.plist */; };
 		023D26072BDEA00E000F0C1B /* SaveMedicineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D26062BDEA00E000F0C1B /* SaveMedicineViewController.swift */; };
 		023D26092BDEA059000F0C1B /* DetailMedicineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D26082BDEA059000F0C1B /* DetailMedicineViewController.swift */; };
 		023D260B2BDEA9B2000F0C1B /* Medicine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D260A2BDEA9B2000F0C1B /* Medicine.swift */; };
@@ -91,6 +92,7 @@
 		020A68EC2BDCE775007D92CA /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		020A68EE2BDCE791007D92CA /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		021D5CB72BDED192001A9974 /* PatuaOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PatuaOne-Regular.ttf"; sourceTree = "<group>"; };
+		022030912C6A5AC2008795B1 /* GoogleService-Info-2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-2.plist"; sourceTree = "<group>"; };
 		023D26062BDEA00E000F0C1B /* SaveMedicineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveMedicineViewController.swift; sourceTree = "<group>"; };
 		023D26082BDEA059000F0C1B /* DetailMedicineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMedicineViewController.swift; sourceTree = "<group>"; };
 		023D260A2BDEA9B2000F0C1B /* Medicine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medicine.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				020A68C72BDCDBD4007D92CA /* LaunchScreen.storyboard */,
 				020A68CA2BDCDBD4007D92CA /* Info.plist */,
 				028428FD2BDD28A800F0C645 /* GoogleService-Info.plist */,
+				022030912C6A5AC2008795B1 /* GoogleService-Info-2.plist */,
 				025F73192C09F18700FFE151 /* SF-Pro-Text-Semibold.otf */,
 				025F73152C09EA4500FFE151 /* SF-Pro-Text-Light.otf */,
 				025F73172C09EAB600FFE151 /* SF-Pro-Text-Medium.otf */,
@@ -456,6 +459,7 @@
 				025F73162C09EA4500FFE151 /* SF-Pro-Text-Light.otf in Resources */,
 				028428FE2BDD28A800F0C645 /* GoogleService-Info.plist in Resources */,
 				025F731A2C09F18700FFE151 /* SF-Pro-Text-Semibold.otf in Resources */,
+				022030922C6A5AC2008795B1 /* GoogleService-Info-2.plist in Resources */,
 				020A68C92BDCDBD4007D92CA /* Base in Resources */,
 				025F73182C09EAB600FFE151 /* SF-Pro-Text-Medium.otf in Resources */,
 				020A68C42BDCDBD3007D92CA /* Base in Resources */,
@@ -698,6 +702,8 @@
 				DEVELOPMENT_TEAM = 84LGQM6LPS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedicineReminder/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Take 2 Heal";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Take permission description";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -708,7 +714,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sevvalkalkavan.MedicineReminder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sevvalkalkavan.Take2Heal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -728,6 +734,8 @@
 				DEVELOPMENT_TEAM = 84LGQM6LPS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedicineReminder/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Take 2 Heal";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Take permission description";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -738,7 +746,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sevvalkalkavan.MedicineReminder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sevvalkalkavan.Take2Heal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
