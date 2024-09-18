@@ -50,4 +50,41 @@ class PersonalViewController: UIViewController {
                 }
         
     }
+    
+    @IBAction func deleteAccountButton(_ sender: Any) {
+        let alertController = UIAlertController(title: "Delete Account", message: "Do you want to delete the account?", preferredStyle: .alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
+                print("Cancel")
+            }
+            
+            let okAction = UIAlertAction(title: "Ok", style: .destructive) { [weak self] action in
+                guard let self = self else { return }
+                let personalRepo = PersonalDaoRepository()
+
+                personalRepo.deleteData { error in
+                    if let error = error {
+                        print("Failed to delete user data: \(error.localizedDescription)")
+                    } else {
+                        Auth.auth().currentUser?.delete { error in
+                            if let error = error {
+                                print("Failed to delete user account: \(error.localizedDescription)")
+                            } else {
+                                do {
+                                    try Auth.auth().signOut()
+                                    self.navigationController?.popToRootViewController(animated: true)
+                                } catch {
+                                    print("Error signing out: \(error.localizedDescription)")
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            self.present(alertController, animated: true)
+            alertController.addAction(cancelAction)
+            alertController.addAction(okAction)
+        
+    }
 }

@@ -116,7 +116,9 @@ class SaveMedicineViewController: UIViewController,UIImagePickerControllerDelega
                                 print("Medicine saved successfully.")
                                 
                             }
+                            
                             self.dismiss(animated: true, completion: nil)
+
                         }
                     }
                 }

@@ -20,6 +20,34 @@ class PersonalDaoRepository {
         collectionPerson.document().setData(person)
     }
     
+    func deleteData(completion: @escaping (Error?) -> Void) {
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+
+        let userEmail = currentUser.email ?? ""
+        
+        collectionPerson.whereField("username", isEqualTo: userEmail).getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+                completion(error)
+            } else {
+                for document in querySnapshot!.documents {
+                    document.reference.delete { error in
+                        if let error = error {
+                            print("Error removing document: \(error)")
+                            completion(error)
+                        } else {
+                            print("Document successfully removed!")
+                            completion(nil)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    
     func loadData() {
         guard let currentUser = Auth.auth().currentUser else {
             return
