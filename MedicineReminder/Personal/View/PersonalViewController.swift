@@ -43,11 +43,22 @@ class PersonalViewController: UIViewController {
 
     @IBAction func logOutButton(_ sender: Any) {
         do {
-                    try Auth.auth().signOut()
-                    navigationController?.popToRootViewController(animated: true)
-                } catch {
-                    print("Error signing out: \(error.localizedDescription)")
-                }
+               try Auth.auth().signOut()
+               
+               // Uygulamanın kök ekranını (rootViewController) değiştirmek
+               if let window = UIApplication.shared.windows.first {
+                   let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                   let homeNC = storyboard.instantiateViewController(withIdentifier: "homeNC") as! UINavigationController
+                   window.rootViewController = homeNC
+                   window.makeKeyAndVisible()
+                   
+                   // Geri dönüş animasyonu
+                   UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+               }
+               
+           } catch {
+               print("Error signing out: \(error.localizedDescription)")
+           }
         
     }
     
