@@ -23,7 +23,7 @@ class TabBarViewController: UITabBarController {
                     if let label = viewTabBar.subviews[1] as? UILabel {
                         label.numberOfLines = 2
                         label.textAlignment = .center
-                        label.text = NSLocalizedString("tab_point", comment: "Tab Bar Label")
+                        label.text = NSLocalizedString("Personal", comment: "")
                     }
                     items[2].imageInsets = UIEdgeInsets(top: 8, left: 0, bottom: -5, right: 0)
                 }
