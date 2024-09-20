@@ -39,6 +39,8 @@ class SaveMedicineViewController: UIViewController,UIImagePickerControllerDelega
         medicineImageView.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectImage))
         medicineImageView.addGestureRecognizer(gestureRecognizer)
+       
+        
         let getGesture = UITapGestureRecognizer(target: self, action: #selector(gestureRecognize))
                 view.addGestureRecognizer(getGesture)
         datePicker?.addTarget(self, action: #selector(getDate(uiDatePicker:)), for: .valueChanged)
@@ -66,6 +68,8 @@ class SaveMedicineViewController: UIViewController,UIImagePickerControllerDelega
         let currentDate = format.string(from: uiDatePicker.date)
         dueDateTF.text = currentDate
     }
+    
+    
     @objc func selectImage(){
         
         let pickerController = UIImagePickerController()

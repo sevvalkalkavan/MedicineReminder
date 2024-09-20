@@ -56,6 +56,7 @@
 		02C3F3292C08AC2200B2CDB9 /* MedicineDaoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C3F3282C08AC2200B2CDB9 /* MedicineDaoRepository.swift */; };
 		02CA373D2BFA32860048FF80 /* PersonalDaoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA373C2BFA32860048FF80 /* PersonalDaoRepository.swift */; };
 		02CA373F2BFA32D50048FF80 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA373E2BFA32D50048FF80 /* Person.swift */; };
+		02EDD9EA2C9D86480014DED8 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EDD9E92C9D86480014DED8 /* TabBarViewController.swift */; };
 		02FE64E22BF6045200230512 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FE64E12BF6045200230512 /* CalendarViewModel.swift */; };
 		02FE64E42BF6059600230512 /* SaveCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FE64E32BF6059600230512 /* SaveCalendarViewModel.swift */; };
 		02FE64E82BF6062900230512 /* CalendarDaoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FE64E72BF6062900230512 /* CalendarDaoRepository.swift */; };
@@ -126,6 +127,7 @@
 		02C3F3282C08AC2200B2CDB9 /* MedicineDaoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineDaoRepository.swift; sourceTree = "<group>"; };
 		02CA373C2BFA32860048FF80 /* PersonalDaoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDaoRepository.swift; sourceTree = "<group>"; };
 		02CA373E2BFA32D50048FF80 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		02EDD9E92C9D86480014DED8 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabBarViewController.swift; path = Personal/Model/TabBarViewController.swift; sourceTree = "<group>"; };
 		02FE64E12BF6045200230512 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		02FE64E32BF6059600230512 /* SaveCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveCalendarViewModel.swift; sourceTree = "<group>"; };
 		02FE64E72BF6062900230512 /* CalendarDaoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDaoRepository.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 		020A68BB2BDCDBD3007D92CA /* MedicineReminder */ = {
 			isa = PBXGroup;
 			children = (
+				02EDD9E92C9D86480014DED8 /* TabBarViewController.swift */,
 				0249D11C2C80F455005E49E5 /* MedicineReminder.entitlements */,
 				020A68BC2BDCDBD3007D92CA /* AppDelegate.swift */,
 				020A68BE2BDCDBD3007D92CA /* SceneDelegate.swift */,
@@ -532,6 +535,7 @@
 				0247AB472BF34C540015C9B1 /* CalendarCollectionViewCell.swift in Sources */,
 				02FE64E42BF6059600230512 /* SaveCalendarViewModel.swift in Sources */,
 				023D26072BDEA00E000F0C1B /* SaveMedicineViewController.swift in Sources */,
+				02EDD9EA2C9D86480014DED8 /* TabBarViewController.swift in Sources */,
 				02C3F3272C08ABF500B2CDB9 /* MedicineViewModel.swift in Sources */,
 				02C3F31B2C089F4100B2CDB9 /* SignUpViewModel.swift in Sources */,
 				02C3F3252C08ABE900B2CDB9 /* DetailMedicineViewModel.swift in Sources */,
@@ -728,17 +732,17 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Take2Heal;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Take permission description";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access to your media library to use photo.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationLandscapeRight;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sevvalkalkavan.TakeHeal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -767,17 +771,17 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Take2Heal;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Take permission description";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access to your media library to use photo.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationLandscapeRight;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sevvalkalkavan.TakeHeal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
