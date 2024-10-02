@@ -52,9 +52,45 @@ class MedicineViewController: UIViewController {
         medicineTableView.reloadData()
     }
     
+    @IBAction func addButton(_ sender: Any) {
+        if let user = Auth.auth().currentUser{
+            performSegue(withIdentifier: "toSaveVC", sender: self)
+            print("current user ")
+            
+            
+        }else{
+            print("kullanıcı giriş yapmalı")
+            let alertController = UIAlertController(title: "Log In", message: "Please log in to access the features of Take2Heal.", preferredStyle: .alert)
+            
+            let noAction = UIAlertAction(title: "Cancel", style: .cancel)
+            
+            let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
+                print("kullanıcı giriş yapmalı")
+                if let window = UIApplication.shared.windows.first {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let mainVC = storyboard.instantiateViewController(withIdentifier: "MainVC") as! ViewController
+                    window.rootViewController = mainVC
+                    window.makeKeyAndVisible()
+                    
+                    // Geri dönüş animasyonu
+                    UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+                }
+            }
+            alertController.addAction(okAction)
+            alertController.addAction(noAction)
+            
+            self.present(alertController, animated: true)
+            
+        }
+        
+        
+        
+    }
+    }
+    
  
 
-}
+
 
 extension MedicineViewController: UITextFieldDelegate {
     

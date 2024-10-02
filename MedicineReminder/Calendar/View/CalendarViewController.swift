@@ -7,6 +7,7 @@
 
 import UIKit
 import UserNotifications
+import FirebaseAuth
 
 class CalendarViewController: UIViewController {
 
@@ -165,7 +166,46 @@ class CalendarViewController: UIViewController {
         return false
     }
     
-
+    
+    
+    
+    @IBAction func addButton(_ sender: Any) {
+        if let user = Auth.auth().currentUser{
+            performSegue(withIdentifier: "goSaveVC", sender: self)
+            print("current user ")
+            
+            
+        }else{
+            print("kullanıcı giriş yapmalı")
+            let alertController = UIAlertController(title: "Giriş yap", message: "giriş yapılması gerekiyor", preferredStyle: .alert)
+            
+            let noAction = UIAlertAction(title: "Cancel", style: .cancel)
+            
+            let okAction = UIAlertAction(title: "Go login page", style: .default) { _ in
+                print("kullanıcı giriş yapmalı")
+                if let window = UIApplication.shared.windows.first {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let mainVC = storyboard.instantiateViewController(withIdentifier: "MainVC") as! ViewController
+                    window.rootViewController = mainVC
+                    window.makeKeyAndVisible()
+                    
+                    // Geri dönüş animasyonu
+                    UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+                }
+            }
+            alertController.addAction(okAction)
+            alertController.addAction(noAction)
+            
+            self.present(alertController, animated: true)
+            
+        }
+        
+        
+        
+    }
+    
+    
+    
 }
 
 

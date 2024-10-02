@@ -76,19 +76,22 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     if let name = self.usernameTF.text, let weight = self.weightTF.text, let height = self.heightTF.text , let dob = self.DateOfBirthTF.text {
                         self.signUpviewModel.save(name: name, weight: weight, height: height, dob: dob)
                     }
-                    self.performSegue(withIdentifier: "toCalendarVC", sender: self)
+                    if let tabBarVC = self.storyboard?.instantiateViewController(withIdentifier: "tabBar") as? UITabBarController {
+                        tabBarVC.modalPresentationStyle = .fullScreen
+                        self.present(tabBarVC, animated: true, completion: nil)
+                    }
+                    
                 }
-            
             }
-        }else{
-            signUpviewModel.errorAlert(titleInput: "Error", messageInput: "Empty email or password", viewController: self)
-        }
- 
+            }else{
+                signUpviewModel.errorAlert(titleInput: "Error", messageInput: "Empty email or password", viewController: self)
+            }
+            
+        
+        
+        
+        
     }
-    
-    
-  
- 
     
 }
 

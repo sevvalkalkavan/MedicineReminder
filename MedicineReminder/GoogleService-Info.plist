@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.sevvalkalkavan.MedicineReminder</string>
+	<string>com.sevvalkalkavan.TakeHeal</string>
 	<key>PROJECT_ID</key>
 	<string>medicinereminder-3919c</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:944647032837:ios:072a750f830ccf4c9b8c6c</string>
+	<string>1:944647032837:ios:5503d64b8207b1bf9b8c6c</string>
 </dict>
 </plist>

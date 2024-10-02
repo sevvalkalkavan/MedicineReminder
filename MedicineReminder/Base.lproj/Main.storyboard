@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M9o-Cv-6nw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M9o-Cv-6nw">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -26,7 +26,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MedicineReminder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainVC" id="BYZ-38-t0r" customClass="ViewController" customModule="MedicineReminder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -102,7 +102,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="PsQ-FS-d7d">
             <objects>
-                <viewController id="if2-nr-CNK" customClass="SignUpViewController" customModule="MedicineReminder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signupVC" id="if2-nr-CNK" customClass="SignUpViewController" customModule="MedicineReminder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="68x-87-1Uz">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -117,7 +117,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="310" height="45"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ML4-N6-Ahu">
-                                                        <rect key="frame" x="0.0" y="1.5" width="50" height="41.5"/>
+                                                        <rect key="frame" x="0.0" y="2.3333333333333321" width="50" height="41"/>
                                                         <color key="tintColor" name="buttonLogin"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="50" id="1op-iE-IM5"/>
@@ -161,7 +161,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="310" height="45"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rpw-p4-Fgh">
-                                                        <rect key="frame" x="0.0" y="0.5" width="50" height="43.5"/>
+                                                        <rect key="frame" x="0.0" y="1" width="50" height="43"/>
                                                         <color key="tintColor" name="buttonLogin"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="aAv-PJ-NDL"/>
@@ -293,7 +293,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="310" height="45"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WT4-So-X7N">
-                                                        <rect key="frame" x="0.0" y="1" width="50" height="42.500000000000007"/>
+                                                        <rect key="frame" x="0.0" y="1.6666666666666643" width="50" height="42"/>
                                                         <color key="tintColor" name="buttonLogin"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="DgM-wZ-zK7"/>
@@ -408,7 +408,7 @@
         <!--Log In View Controller-->
         <scene sceneID="pa4-iW-ndE">
             <objects>
-                <viewController id="zkE-YP-veE" customClass="LogInViewController" customModule="MedicineReminder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginVC" id="zkE-YP-veE" customClass="LogInViewController" customModule="MedicineReminder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DIN-Pp-16J">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -420,7 +420,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="45"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pbq-Yd-uTy">
-                                                <rect key="frame" x="0.0" y="1.5" width="50" height="41.5"/>
+                                                <rect key="frame" x="0.0" y="2.3333333333333321" width="50" height="41"/>
                                                 <color key="tintColor" name="buttonLogin"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="2ii-hu-7e2"/>
@@ -464,7 +464,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="45"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gjd-Sr-ye1">
-                                                <rect key="frame" x="0.0" y="0.5" width="50" height="43.5"/>
+                                                <rect key="frame" x="0.0" y="1" width="50" height="43"/>
                                                 <color key="tintColor" name="buttonLogin"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="Ntm-y7-Oz8"/>
@@ -580,7 +580,7 @@
         <!--Calendar-->
         <scene sceneID="wM8-Av-whB">
             <objects>
-                <viewController id="sQM-qN-ZP6" customClass="CalendarViewController" customModule="MedicineReminder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CalendarVC" id="sQM-qN-ZP6" customClass="CalendarViewController" customModule="MedicineReminder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qgG-MW-BBx">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -718,7 +718,8 @@
                                     <backgroundConfiguration key="background" image="plus.circle" catalog="system"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="Kh1-bT-tRu" kind="presentation" id="IG4-uD-fCz"/>
+                                    <action selector="addButton:" destination="sQM-qN-ZP6" eventType="touchUpInside" id="c0W-7b-PTL"/>
+                                    <segue destination="Kh1-bT-tRu" kind="presentation" identifier="goSaveVC" id="IG4-uD-fCz"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="CR3-AL-Zq5">
@@ -745,8 +746,8 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="trW-Gq-s9m">
                                                             <rect key="frame" x="116" y="18" width="147" height="74"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Name of medi" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMx-Zz-WhD">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="147" height="24.666666666666668"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of medi" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMx-Zz-WhD">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="147" height="26.333333333333332"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="26.329999999999998" id="JoJ-ck-y23"/>
                                                                         <constraint firstAttribute="width" constant="147" id="JvW-DO-gAr"/>
@@ -756,7 +757,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Dosage" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oT3-2j-FRF">
-                                                                    <rect key="frame" x="0.0" y="24.666666666666661" width="147" height="49.333333333333343"/>
+                                                                    <rect key="frame" x="0.0" y="26.333333333333336" width="147" height="25.333333333333336"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="147" id="csh-SJ-11b"/>
                                                                         <constraint firstAttribute="height" constant="49.329999999999998" id="xCN-2n-TCH"/>
@@ -766,7 +767,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Meal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oA0-fs-Zw7">
-                                                                    <rect key="frame" x="0.0" y="74" width="147" height="0.0"/>
+                                                                    <rect key="frame" x="0.0" y="51.666666666666671" width="147" height="22.333333333333329"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="147" id="Yhp-hs-Rrc"/>
                                                                         <constraint firstAttribute="height" constant="72.329999999999998" id="nzt-6T-CsI"/>
@@ -834,7 +835,7 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To take" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gow-UR-4sB">
-                                <rect key="frame" x="16.000000000000007" y="255" width="111.66666666666669" height="29"/>
+                                <rect key="frame" x="15.999999999999993" y="255" width="103.33333333333331" height="29"/>
                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="32"/>
                                 <color key="textColor" red="0.16862745100000001" green="0.20392156859999999" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1499,7 +1500,8 @@
                                                     <backgroundConfiguration key="background" image="plus.circle" catalog="system"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <segue destination="tEO-nr-YIa" kind="presentation" id="9TU-sO-Wcj"/>
+                                                    <action selector="addButton:" destination="DkB-Rb-V3d" eventType="touchUpInside" id="6aW-tb-wDO"/>
+                                                    <segue destination="tEO-nr-YIa" kind="presentation" identifier="toSaveVC" id="9TU-sO-Wcj"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1762,10 +1764,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="105.66666666666667" height="89.666666666666671"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Bru-Gb-zeU">
-                                                        <rect key="frame" x="34.666666666666671" y="18.666666666666689" width="36.666666666666671" height="52.333333333333343"/>
+                                                        <rect key="frame" x="28" y="6.6666666666666856" width="50" height="76"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MdT-qp-vRj">
-                                                                <rect key="frame" x="0.0" y="0.0" width="36.666666666666664" height="26.333333333333332"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MdT-qp-vRj">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="22"/>
                                                                 <color key="textColor" name="buttonLogin"/>
                                                                 <nil key="highlightedColor"/>
@@ -1774,7 +1776,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xiu-Ni-His">
-                                                                <rect key="frame" x="0.0" y="28.333333333333314" width="36.666666666666664" height="24"/>
+                                                                <rect key="frame" x="0.0" y="51.999999999999972" width="50" height="24"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="20"/>
                                                                 <color key="textColor" name="buttonLogin"/>
                                                                 <nil key="highlightedColor"/>
@@ -1798,10 +1800,10 @@
                                                 <rect key="frame" x="118.66666666666666" y="0.0" width="105.66666666666666" height="89.666666666666671"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="me3-uu-ihx">
-                                                        <rect key="frame" x="20.333333333333343" y="18.666666666666689" width="65.333333333333329" height="52.333333333333343"/>
+                                                        <rect key="frame" x="20.333333333333343" y="6.6666666666666856" width="65.333333333333329" height="76"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="55" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bom-cx-Ais">
-                                                                <rect key="frame" x="0.0" y="0.0" width="65.333333333333329" height="26.333333333333332"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bom-cx-Ais">
+                                                                <rect key="frame" x="0.0" y="0.0" width="65.333333333333329" height="50"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="22"/>
                                                                 <color key="textColor" name="buttonLogin"/>
                                                                 <nil key="highlightedColor"/>
@@ -1810,7 +1812,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weight" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z6q-4Q-BYa">
-                                                                <rect key="frame" x="0.0" y="28.333333333333314" width="65.333333333333329" height="24"/>
+                                                                <rect key="frame" x="0.0" y="51.999999999999972" width="65.333333333333329" height="24"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="20"/>
                                                                 <color key="textColor" name="buttonLogin"/>
                                                                 <nil key="highlightedColor"/>
@@ -1834,10 +1836,10 @@
                                                 <rect key="frame" x="237.33333333333329" y="0.0" width="105.66666666666666" height="89.666666666666671"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="DQC-28-69U">
-                                                        <rect key="frame" x="21.999999999999996" y="18.666666666666689" width="61.666666666666657" height="52.333333333333343"/>
+                                                        <rect key="frame" x="21.999999999999996" y="6.6666666666666856" width="61.666666666666657" height="76"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="155" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6V-PV-954">
-                                                                <rect key="frame" x="0.0" y="0.0" width="61.666666666666664" height="26.333333333333332"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6V-PV-954">
+                                                                <rect key="frame" x="0.0" y="0.0" width="61.666666666666664" height="50"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="22"/>
                                                                 <color key="textColor" name="buttonLogin"/>
                                                                 <nil key="highlightedColor"/>
@@ -1846,7 +1848,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Height" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JrW-7Q-vUf">
-                                                                <rect key="frame" x="0.0" y="28.333333333333314" width="61.666666666666664" height="24"/>
+                                                                <rect key="frame" x="0.0" y="51.999999999999972" width="61.666666666666664" height="24"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="20"/>
                                                                 <color key="textColor" name="buttonLogin"/>
                                                                 <nil key="highlightedColor"/>
@@ -1931,7 +1933,9 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="ageLabel" destination="MdT-qp-vRj" id="drL-JP-dAN"/>
+                        <outlet property="deleteButton" destination="YN3-RV-EIY" id="eSs-mQ-wbu"/>
                         <outlet property="heightLabel" destination="O6V-PV-954" id="bJB-Ab-tsC"/>
+                        <outlet property="logOutButton" destination="QvN-mU-J7Y" id="zA7-74-xAZ"/>
                         <outlet property="usernameLabel" destination="XeI-Va-bkU" id="3za-Rf-vC9"/>
                         <outlet property="weightLabel" destination="bom-cx-Ais" id="mEE-JH-4O4"/>
                     </connections>
@@ -2011,7 +2015,7 @@
                                 </cells>
                             </collectionView>
                             <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="2fk-qb-B9h">
-                                <rect key="frame" x="138.66666666666666" y="666.33333333333337" width="115.66666666666666" height="25.666666666666629"/>
+                                <rect key="frame" x="160" y="666.33333333333337" width="73" height="25.666666666666629"/>
                                 <color key="pageIndicatorTintColor" name="buttonLogin"/>
                                 <color key="currentPageIndicatorTintColor" name="select"/>
                             </pageControl>
@@ -2112,7 +2116,7 @@
         <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="envelope" catalog="system" width="128" height="85"/>
         <image name="height" width="512" height="512"/>
-        <image name="lock" catalog="system" width="125" height="128"/>
+        <image name="lock" catalog="system" width="111" height="128"/>
         <image name="magnifyingglass.circle" catalog="system" width="128" height="123"/>
         <image name="person" catalog="system" width="128" height="121"/>
         <image name="pill" width="254" height="141"/>

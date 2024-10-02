@@ -45,10 +45,11 @@ class Onboarding: UIViewController {
     
     @IBAction func clickedNextButton(_ sender: UIButton) {
         if currentPage == slides.count - 1 {
-               let controller = storyboard?.instantiateViewController(identifier: "homeNC") as! UINavigationController
-               controller.modalPresentationStyle = .fullScreen
-               controller.modalTransitionStyle = .flipHorizontal
-               present(controller, animated: true, completion: nil)
+            let tabBarController = storyboard?.instantiateViewController(identifier: "tabBar") as! UITabBarController
+
+            tabBarController.modalPresentationStyle = .fullScreen
+            tabBarController.modalTransitionStyle = .flipHorizontal
+               present(tabBarController, animated: true, completion: nil)
            } else {
                currentPage += 1
                collectionView.isPagingEnabled = false

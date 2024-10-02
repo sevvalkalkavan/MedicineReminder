@@ -44,20 +44,22 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         
         if usernameTF.text != "" && passwordTF.text != "" {
-            
-            Auth.auth().signIn(withEmail: usernameTF.text!, password: passwordTF.text!){(authdataresult, error) in
-                if error != nil {
-                    self.loginViewModel.errorAlert(titleInput: "Error", messageInput: error!.localizedDescription, viewController: self)
-                }else{
-                   print("Başarılı giriş")
-                    self.performSegue(withIdentifier: "toCalendarVC", sender: self)
-                }
-            
-            }
-            
-        }else{
-            loginViewModel.errorAlert(titleInput: "Error", messageInput: "Empty", viewController: self)
-        }
+              Auth.auth().signIn(withEmail: usernameTF.text!, password: passwordTF.text!) { (authdataresult, error) in
+                  if error != nil {
+                      self.loginViewModel.errorAlert(titleInput: "Error", messageInput: error!.localizedDescription, viewController: self)
+                  } else {
+                      print("Başarılı giriş")
+                      
+                      // TabBarController'a tam ekran geçiş
+                      if let tabBarVC = self.storyboard?.instantiateViewController(withIdentifier: "tabBar") as? UITabBarController {
+                          tabBarVC.modalPresentationStyle = .fullScreen
+                          self.present(tabBarVC, animated: true, completion: nil)
+                      }
+                  }
+              }
+          } else {
+              loginViewModel.errorAlert(titleInput: "Error", messageInput: "Empty", viewController: self)
+          }
         
         
     }
