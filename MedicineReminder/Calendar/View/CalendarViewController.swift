@@ -18,11 +18,14 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var monthLabel: UILabel!
    
     var calendarViewModel = CalendarViewModel()
+    var calendarModelViewModel = CalendarModelViewModel()
     
     var selectedDate = Date()
     var totalSquares = [Date]()
     
     var medicineList = [CalendarMedicine]()
+    
+    var medList = [CalendarModel]()
     
     
     var permission = UNUserNotificationCenter.current()
@@ -34,29 +37,38 @@ class CalendarViewController: UIViewController {
         self.view.backgroundColor = UIColor(named: "tabBar")
         
         medicineTableView.backgroundColor = UIColor(named: "tabBar")
-        //medicineTableView.separatorStyle = .none
         medicineTableView.dataSource = self
         medicineTableView.delegate = self
-        medicineTableView.reloadData()
-        calendarViewModel.loadData()
         
-//        calendarViewModel.checkForPermission()
-        
-        updateMedicineList(for: selectedDate)
-        _ = calendarViewModel.medicineList.subscribe(onNext: { list in
-            self.medicineList = list
-            DispatchQueue.main.async {
-                self.updateMedicineList(for: self.selectedDate)
-            }
+        if let _ = Auth.auth().currentUser{
             
-        })
-        
-        
-       checkPermission()
-        
+            calendarViewModel.loadData()
+            medicineTableView.reloadData()
+            updateMedicineList(for: selectedDate)
+            _ = calendarViewModel.medicineList.subscribe(onNext: { list in
+                self.medicineList = list
+                DispatchQueue.main.async {
+                    self.updateMedicineList(for: self.selectedDate)
+                }
+                
+            })
+        }else{
+            
+//            calendarModelViewModel.load()
+//            medicineTableView.reloadData()
+//            updateMedicineList(for: selectedDate)
+            _ = calendarModelViewModel.medList.subscribe(onNext: { list in
+                self.medList = list
+               // self.medicineTableView.reloadData()
+                DispatchQueue.main.async {
+                    self.medicineTableView.reloadData()
+                    self.updateMedicineList(for: self.selectedDate)
+                }
+            })
+        }
+    
+        checkPermission()
         weekCollectionView.backgroundColor = UIColor(named: "tabBar")
-        
-        
         weekCollectionView.dataSource = self
         weekCollectionView.delegate = self
         
@@ -81,50 +93,73 @@ class CalendarViewController: UIViewController {
         tabBarController?.tabBar.standardAppearance = apper
         tabBarController?.tabBar.scrollEdgeAppearance = apper
         
-        
-        
-        
     }
     
  
     func updateMedicineList(for date: Date) {
-        medicineList = calendarViewModel.medicineForDate(date: date)
+        if Auth.auth().currentUser != nil {
+            medicineList = calendarViewModel.medicineForDate(date: date)
+        } else {
+            medList = calendarModelViewModel.medicineForDate(date: date)
+        }
         medicineTableView.reloadData()
+        
     }
 
     func checkPermission() {
-           let notificationCenter = UNUserNotificationCenter.current()
-           notificationCenter.getNotificationSettings { settings in
-               switch settings.authorizationStatus {
-               case .authorized:
-                   self.calendarViewModel.checkAndSendNotification()
-               case .denied:
-                   return
-               case .notDetermined:
-                   notificationCenter.requestAuthorization(options: [.alert, .sound]) { didAllow, error in
-                       if didAllow {
-                           self.calendarViewModel.checkAndSendNotification()
-                       }
-                   }
-               default:
-                   return
-               }
-           }
-       }
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .authorized:
+                if let _ = Auth.auth().currentUser {
+                    self.calendarViewModel.checkAndSendNotification()
+                } else {
+                    self.calendarModelViewModel.checkAndSendNotification()
+                }
+            case .denied:
+                return
+            case .notDetermined:
+                notificationCenter.requestAuthorization(options: [.alert, .sound]) { didAllow, error in
+                    if didAllow {
+                        if let _ = Auth.auth().currentUser {
+                            self.calendarViewModel.checkAndSendNotification()
+                        } else {
+                            self.calendarModelViewModel.checkAndSendNotification()
+                        }
+                    }
+                }
+            default:
+                return
+            }
+        }
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.navigationItem.hidesBackButton = true
-        calendarViewModel.loadData()
+        if let _ = Auth.auth().currentUser {
+            calendarViewModel.loadData()
+        } else {
+            calendarModelViewModel.load()
+            medicineTableView.reloadData()
+
+        }
     }
+
+
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         medicineTableView.reloadData()
-        calendarViewModel.loadData()
+        if Auth.auth().currentUser != nil {
+            calendarViewModel.loadData()
+        } else {
+            calendarModelViewModel.load()
+        }
+        
     }
     
     func changeColor(itemAppearance: UITabBarItemAppearance){
-        //selected
+        
         itemAppearance.selected.iconColor = UIColor(named: "select")
         itemAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor(named: "select")]
         
@@ -168,44 +203,17 @@ class CalendarViewController: UIViewController {
     
     
     
-    
     @IBAction func addButton(_ sender: Any) {
-        if let user = Auth.auth().currentUser{
+        if let _ = Auth.auth().currentUser{
             performSegue(withIdentifier: "goSaveVC", sender: self)
             print("current user ")
             
-            
         }else{
-            print("kullanıcı giriş yapmalı")
-            let alertController = UIAlertController(title: "Giriş yap", message: "giriş yapılması gerekiyor", preferredStyle: .alert)
-            
-            let noAction = UIAlertAction(title: "Cancel", style: .cancel)
-            
-            let okAction = UIAlertAction(title: "Go login page", style: .default) { _ in
-                print("kullanıcı giriş yapmalı")
-                if let window = UIApplication.shared.windows.first {
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let mainVC = storyboard.instantiateViewController(withIdentifier: "MainVC") as! ViewController
-                    window.rootViewController = mainVC
-                    window.makeKeyAndVisible()
-                    
-                    // Geri dönüş animasyonu
-                    UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: nil, completion: nil)
-                }
-            }
-            alertController.addAction(okAction)
-            alertController.addAction(noAction)
-            
-            self.present(alertController, animated: true)
-            
+            print("Coredata ile devam ")
+            performSegue(withIdentifier: "goSaveVC", sender: self)
+
         }
-        
-        
-        
     }
-    
-    
-    
 }
 
 
@@ -246,46 +254,85 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
 
 extension CalendarViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return medicineList.count
+        if let _ = Auth.auth().currentUser {
+            return medicineList.count
+        } else {
+            return medList.count
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let medicine = medicineList[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "calendarMedicineCell", for: indexPath) as! CalendarMedicineTableViewCell
-        cell.medicineNameLabel.text = medicine.medicineName
-        cell.mealLabel.text = medicine.medicineMeal
-        cell.dosageLabel.text = medicine.medicineDosage
-        cell.timeLabel.text = medicine.medicineTime
-        cell.backgroundColor = UIColor(named: "background")
-        cell.cellView.layer.cornerRadius = 12.0
-        cell.cellView.backgroundColor = UIColor(named: "background")
-        return cell
+        if let _ = Auth.auth().currentUser {
+            let medicine = medicineList[indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: "calendarMedicineCell", for: indexPath) as! CalendarMedicineTableViewCell
+            cell.medicineNameLabel.text = medicine.medicineName
+            cell.mealLabel.text = medicine.medicineMeal
+            cell.dosageLabel.text = medicine.medicineDosage
+            cell.timeLabel.text = medicine.medicineTime
+            cell.backgroundColor = UIColor(named: "background")
+            cell.cellView.layer.cornerRadius = 12.0
+            cell.cellView.backgroundColor = UIColor(named: "background")
+            return cell
+        } else {
+            let medicine = medList[indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: "calendarMedicineCell", for: indexPath) as! CalendarMedicineTableViewCell
+            cell.medicineNameLabel.text = medicine.medicineName
+            cell.mealLabel.text = medicine.medicineMeal
+            cell.dosageLabel.text = medicine.medicineDosage
+            cell.timeLabel.text = medicine.medicineTime
+            cell.backgroundColor = UIColor(named: "background")
+            cell.cellView.layer.cornerRadius = 12.0
+            cell.cellView.backgroundColor = UIColor(named: "background")
+            return cell
+        }
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-           let medicine = medicineList[indexPath.row]
-           print("eklenen id: \(medicine.medicineID)")
-       }
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { contextualAction, view, bool in
-            let medicine = self.medicineList[indexPath.row]
-            let alert = UIAlertController(title: "Delete", message: "Should the \(medicine.medicineName) be deleted?", preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-            alert.addAction(cancelAction)
-            let okAction = UIAlertAction(title: "Ok", style: .destructive) { action in
-                print("\(medicine.medicineID)")
-                self.calendarViewModel.deleteMedicine(medicineID: medicine.medicineID)
-                self.calendarViewModel.loadData()
-                self.updateMedicineList(for: self.selectedDate)
-            }
-            alert.addAction(okAction)
-            self.present(alert, animated: true)
+        if let _ = Auth.auth().currentUser {
+            let medicine = medicineList[indexPath.row]
+            print("Firebase'den seçilen ilaç ID'si: \(medicine.medicineID)")
+        } else {
+            let medicine = medList[indexPath.row]
+            print("CoreData'dan seçilen ilaç: \(medicine.medicineName)")
         }
-
-        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+       
+        
+        if let _ = Auth.auth().currentUser{
+            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { contextualAction, view, bool in
+                let medicine = self.medicineList[indexPath.row]
+                let alert = UIAlertController(title: "Delete", message: "Should the \(medicine.medicineName) be deleted?", preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+                alert.addAction(cancelAction)
+                let okAction = UIAlertAction(title: "Ok", style: .destructive) { action in
+                    print("\(medicine.medicineID)")
+                    self.calendarViewModel.deleteMedicine(medicineID: medicine.medicineID)
+                    self.calendarViewModel.loadData()
+                    self.updateMedicineList(for: self.selectedDate)
+                }
+                alert.addAction(okAction)
+                self.present(alert, animated: true)
+            }
 
-    
-    
-    
+            return UISwipeActionsConfiguration(actions: [deleteAction])
+        }else{
+            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { contextualAction, view, bool in
+                let medicine = self.medList[indexPath.row]
+                let alert = UIAlertController(title: "Delete", message: "Should the \(medicine.medicineName!) be deleted?", preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+                alert.addAction(cancelAction)
+                let okAction = UIAlertAction(title: "Ok", style: .destructive) { action in
+                    self.calendarModelViewModel.delete(med: medicine)
+                    self.calendarModelViewModel.load()
+                    self.updateMedicineList(for: self.selectedDate)
+                }
+                alert.addAction(okAction)
+                self.present(alert, animated: true)
+            }
+
+            return UISwipeActionsConfiguration(actions: [deleteAction])
+        }
+    }
 }

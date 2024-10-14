@@ -44,23 +44,28 @@ class Onboarding: UIViewController {
     }
     
     @IBAction func clickedNextButton(_ sender: UIButton) {
-        if currentPage == slides.count - 1 {
-            let tabBarController = storyboard?.instantiateViewController(identifier: "tabBar") as! UITabBarController
+            if currentPage == slides.count - 1 {
+                // Onboarding tamamlandığında UserDefaults'a kaydet
+                UserDefaults.standard.set(true, forKey: "onboardingCompleted")
 
-            tabBarController.modalPresentationStyle = .fullScreen
-            tabBarController.modalTransitionStyle = .flipHorizontal
-               present(tabBarController, animated: true, completion: nil)
-           } else {
-               currentPage += 1
-               collectionView.isPagingEnabled = false
-               let indexPath = IndexPath(item: currentPage, section: 0)
-               collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-               collectionView.isPagingEnabled = true
-           }
+                // Ana ekrana geçiş yap
+                let tabBarController = storyboard?.instantiateViewController(identifier: "tabBar") as! UITabBarController
+                tabBarController.modalPresentationStyle = .fullScreen
+                tabBarController.modalTransitionStyle = .flipHorizontal
+                present(tabBarController, animated: true, completion: nil)
+            } else {
+                currentPage += 1
+                collectionView.isPagingEnabled = false
+                let indexPath = IndexPath(item: currentPage, section: 0)
+                collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+                collectionView.isPagingEnabled = true
+            }
+        }
+
     }
     
         
-    }
+    
     
 
 

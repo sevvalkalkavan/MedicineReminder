@@ -30,6 +30,10 @@
 		0247AB472BF34C540015C9B1 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0247AB462BF34C540015C9B1 /* CalendarCollectionViewCell.swift */; };
 		024A23502BE7FD4700CC2B5A /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 024A234F2BE7FD4700CC2B5A /* RxSwift */; };
 		025308692BF3EFDB00EA5B8B /* SaveCalendarMedicineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025308682BF3EFDB00EA5B8B /* SaveCalendarMedicineViewController.swift */; };
+		025AD6372CB5206800B2A049 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 025AD6352CB5206800B2A049 /* Model.xcdatamodeld */; };
+		025AD65A2CB5214400B2A049 /* CalendarModelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AD6592CB5213B00B2A049 /* CalendarModelViewModel.swift */; };
+		025AD65C2CB5237F00B2A049 /* ModelCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AD65B2CB5237800B2A049 /* ModelCalendar.swift */; };
+		025AD65E2CB57D4E00B2A049 /* SaveCalendarModelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AD65D2CB57D4400B2A049 /* SaveCalendarModelViewModel.swift */; };
 		025F73162C09EA4500FFE151 /* SF-Pro-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 025F73152C09EA4500FFE151 /* SF-Pro-Text-Light.otf */; };
 		025F73182C09EAB600FFE151 /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 025F73172C09EAB600FFE151 /* SF-Pro-Text-Medium.otf */; };
 		025F731A2C09F18700FFE151 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 025F73192C09F18700FFE151 /* SF-Pro-Text-Semibold.otf */; };
@@ -106,6 +110,10 @@
 		0247AB462BF34C540015C9B1 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		0249D11C2C80F455005E49E5 /* MedicineReminder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MedicineReminder.entitlements; sourceTree = "<group>"; };
 		025308682BF3EFDB00EA5B8B /* SaveCalendarMedicineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveCalendarMedicineViewController.swift; sourceTree = "<group>"; };
+		025AD6362CB5206800B2A049 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		025AD6592CB5213B00B2A049 /* CalendarModelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModelViewModel.swift; sourceTree = "<group>"; };
+		025AD65B2CB5237800B2A049 /* ModelCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCalendar.swift; sourceTree = "<group>"; };
+		025AD65D2CB57D4400B2A049 /* SaveCalendarModelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveCalendarModelViewModel.swift; sourceTree = "<group>"; };
 		025F73152C09EA4500FFE151 /* SF-Pro-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Light.otf"; sourceTree = "<group>"; };
 		025F73172C09EAB600FFE151 /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
 		025F73192C09F18700FFE151 /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
@@ -114,6 +122,7 @@
 		026678582C9AE816006F263F /* OnboardingSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSlide.swift; sourceTree = "<group>"; };
 		0266785A2C9AEAE3006F263F /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		02800AB22BF0C5780012E03B /* CalendarDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDate.swift; sourceTree = "<group>"; };
+		028461E02CB00EE700E645DF /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		0286FF962BF35D94002DBF30 /* CalendarMedicineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMedicineTableViewCell.swift; sourceTree = "<group>"; };
 		02C3F3182C089F3100B2CDB9 /* PersonalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewModel.swift; sourceTree = "<group>"; };
 		02C3F31A2C089F4100B2CDB9 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -169,6 +178,7 @@
 				020A68BB2BDCDBD3007D92CA /* MedicineReminder */,
 				020A68D22BDCDBD4007D92CA /* MedicineReminderTests */,
 				020A68DC2BDCDBD4007D92CA /* MedicineReminderUITests */,
+				028461DF2CB00EE700E645DF /* Frameworks */,
 				020A68BA2BDCDBD3007D92CA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -234,6 +244,14 @@
 				0266785A2C9AEAE3006F263F /* OnboardingCollectionViewCell.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		028461DF2CB00EE700E645DF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				028461E02CB00EE700E645DF /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		02C3F3152C089F0D00B2CDB9 /* Model */ = {
@@ -331,8 +349,10 @@
 		02FE64E52BF605C500230512 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				025AD6352CB5206800B2A049 /* Model.xcdatamodeld */,
 				023D82582BF1F436008D2C4B /* CalendarMedicine.swift */,
 				02FE64E72BF6062900230512 /* CalendarDaoRepository.swift */,
+				025AD65B2CB5237800B2A049 /* ModelCalendar.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -350,7 +370,9 @@
 			isa = PBXGroup;
 			children = (
 				02FE64E32BF6059600230512 /* SaveCalendarViewModel.swift */,
+				025AD6592CB5213B00B2A049 /* CalendarModelViewModel.swift */,
 				02FE64E12BF6045200230512 /* CalendarViewModel.swift */,
+				025AD65D2CB57D4400B2A049 /* SaveCalendarModelViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -432,6 +454,7 @@
 				TargetAttributes = {
 					020A68B82BDCDBD2007D92CA = {
 						CreatedOnToolsVersion = 15.3;
+						LastSwiftMigration = 1600;
 					};
 					020A68CE2BDCDBD4007D92CA = {
 						CreatedOnToolsVersion = 15.3;
@@ -513,6 +536,7 @@
 				020A68C12BDCDBD3007D92CA /* ViewController.swift in Sources */,
 				020A68BD2BDCDBD3007D92CA /* AppDelegate.swift in Sources */,
 				023D260B2BDEA9B2000F0C1B /* Medicine.swift in Sources */,
+				025AD65C2CB5237F00B2A049 /* ModelCalendar.swift in Sources */,
 				02C3F31D2C089F5000B2CDB9 /* LogInviewModel.swift in Sources */,
 				0260E7022BE6BD6500163EE3 /* User.swift in Sources */,
 				02800AB32BF0C5780012E03B /* CalendarDate.swift in Sources */,
@@ -522,7 +546,9 @@
 				020A68BF2BDCDBD3007D92CA /* SceneDelegate.swift in Sources */,
 				023D260D2BDEB19C000F0C1B /* MedicineTableViewCell.swift in Sources */,
 				02C3F3232C08ABDC00B2CDB9 /* SaveMedicineViewModel.swift in Sources */,
+				025AD6372CB5206800B2A049 /* Model.xcdatamodeld in Sources */,
 				02CA373D2BFA32860048FF80 /* PersonalDaoRepository.swift in Sources */,
+				025AD65E2CB57D4E00B2A049 /* SaveCalendarModelViewModel.swift in Sources */,
 				02FE64E82BF6062900230512 /* CalendarDaoRepository.swift in Sources */,
 				020A68EF2BDCE791007D92CA /* SignUpViewController.swift in Sources */,
 				025308692BF3EFDB00EA5B8B /* SaveCalendarMedicineViewController.swift in Sources */,
@@ -531,6 +557,7 @@
 				0247AB472BF34C540015C9B1 /* CalendarCollectionViewCell.swift in Sources */,
 				02FE64E42BF6059600230512 /* SaveCalendarViewModel.swift in Sources */,
 				023D26072BDEA00E000F0C1B /* SaveMedicineViewController.swift in Sources */,
+				025AD65A2CB5214400B2A049 /* CalendarModelViewModel.swift in Sources */,
 				02EDD9EA2C9D86480014DED8 /* TabBarViewController.swift in Sources */,
 				02C3F3272C08ABF500B2CDB9 /* MedicineViewModel.swift in Sources */,
 				02C3F31B2C089F4100B2CDB9 /* SignUpViewModel.swift in Sources */,
@@ -718,6 +745,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MedicineReminder/MedicineReminder.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -747,6 +775,8 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -757,6 +787,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MedicineReminder/MedicineReminder.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -786,6 +817,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -968,6 +1000,19 @@
 			productName = "FirebaseStorageCombine-Community";
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		025AD6352CB5206800B2A049 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				025AD6362CB5206800B2A049 /* Model.xcdatamodel */,
+			);
+			currentVersion = 025AD6362CB5206800B2A049 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 020A68B12BDCDBD2007D92CA /* Project object */;
 }

@@ -757,7 +757,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Dosage" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oT3-2j-FRF">
-                                                                    <rect key="frame" x="0.0" y="26.333333333333336" width="147" height="25.333333333333336"/>
+                                                                    <rect key="frame" x="0.0" y="26.333333333333336" width="147" height="24.666666666666664"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="147" id="csh-SJ-11b"/>
                                                                         <constraint firstAttribute="height" constant="49.329999999999998" id="xCN-2n-TCH"/>
@@ -767,7 +767,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Meal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oA0-fs-Zw7">
-                                                                    <rect key="frame" x="0.0" y="51.666666666666671" width="147" height="22.333333333333329"/>
+                                                                    <rect key="frame" x="0.0" y="51" width="147" height="23"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="147" id="Yhp-hs-Rrc"/>
                                                                         <constraint firstAttribute="height" constant="72.329999999999998" id="nzt-6T-CsI"/>
@@ -835,7 +835,7 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To take" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gow-UR-4sB">
-                                <rect key="frame" x="15.999999999999993" y="255" width="103.33333333333331" height="29"/>
+                                <rect key="frame" x="16.000000000000007" y="255" width="111.66666666666669" height="29"/>
                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="32"/>
                                 <color key="textColor" red="0.16862745100000001" green="0.20392156859999999" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1947,7 +1947,7 @@
         <!--Onboarding-->
         <scene sceneID="ckZ-jO-7Ir">
             <objects>
-                <viewController id="M9o-Cv-6nw" customClass="Onboarding" customModule="MedicineReminder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Onboarding" id="M9o-Cv-6nw" customClass="Onboarding" customModule="MedicineReminder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="57B-a3-P4d">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

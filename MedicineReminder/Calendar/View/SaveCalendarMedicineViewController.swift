@@ -7,6 +7,7 @@
 
 import UIKit
 import UserNotifications
+import FirebaseAuth
 class SaveCalendarMedicineViewController: UIViewController, UITextFieldDelegate {
 
     var saveModel = SaveCalendarViewModel()
@@ -20,6 +21,7 @@ class SaveCalendarMedicineViewController: UIViewController, UITextFieldDelegate 
     
     var selectedDays: [String] = []
 
+    var calendarModelViewModel = SaveCalendarModelViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,11 +88,26 @@ class SaveCalendarMedicineViewController: UIViewController, UITextFieldDelegate 
     
     @IBAction func saveButton(_ sender: Any) {
        
-      
-        if let name = medicineNameTF.text, let dosage = dosageTF.text, let meal = mealTF.text, let time = timeTF.text, !selectedDays.isEmpty {
-            saveModel.saveMedicine(medicineName: name, dosage: dosage, meal: meal, time: time, medDays: selectedDays)
-            }
+        if let user = Auth.auth().currentUser{
+            if let name = medicineNameTF.text, let dosage = dosageTF.text, let meal = mealTF.text, let time = timeTF.text, !selectedDays.isEmpty {
+                saveModel.saveMedicine(medicineName: name, dosage: dosage, meal: meal, time: time, medDays: selectedDays)
+                }
+                dismiss(animated: true, completion: nil)
+        }else{
+           print("coredata ile devam")
+            if let name = medicineNameTF.text, let dosage = dosageTF.text, let meal = mealTF.text, let time = timeTF.text, !selectedDays.isEmpty {
+                calendarModelViewModel.save(medicineName: name, dosage: dosage, meal: meal, time: time, medDays: selectedDays)
+                print("loaded")
+                //calendarModelViewModel.load()
+                }
             dismiss(animated: true, completion: nil)
+            
+        }
+      
+//        if let name = medicineNameTF.text, let dosage = dosageTF.text, let meal = mealTF.text, let time = timeTF.text, !selectedDays.isEmpty {
+//            saveModel.saveMedicine(medicineName: name, dosage: dosage, meal: meal, time: time, medDays: selectedDays)
+//            }
+//            dismiss(animated: true, completion: nil)
     }
    
 
@@ -128,6 +145,7 @@ extension SaveCalendarMedicineViewController{
                timeTF.becomeFirstResponder()
            } else if textField == timeTF {
                textField.resignFirstResponder()
+               saveButton(self)
            }
            return true
        }
